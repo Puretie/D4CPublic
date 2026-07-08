@@ -1,0 +1,1609 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "flail-mary-sunbrand-paladin",
+  "name": "Flail Mary Sunbrand Paladin",
+  "class": "Paladin",
+  "season": "S14",
+  "patch": "3.1.0 Build #72592",
+  "archetype": "Judicator / Sunbrand Heaven's Fury Flail Sprinkler",
+  "buildType": "Original Research Candidate / Meme Endgame Push",
+  "status": "testing",
+  "contentTargets": [
+    "Tower",
+    "Pit",
+    "Bossing",
+    "Meme Prototype"
+  ],
+  "updated": "2026-07-08",
+  "author": "Jeff / Codex",
+  "mechanics": {
+    "coreLoop": "Equip the Sunbrand Unique Flail, apply Judgement with Holy Bolt and Holy Light Aura, detonate Judgement with Blessed Hammer to feed cooldown support, then cast Heaven's Fury as a flail-powered orbiting light sprinkler.",
+    "engineTags": [
+      "flail-locked unique",
+      "persistent beams",
+      "judgement loop",
+      "ultimate uptime",
+      "holy damage",
+      "meme but legal"
+    ],
+    "coreInteractions": [
+      {
+        "name": "Sunbrand flail sprinkler",
+        "summary": "Sunbrand is a Paladin Unique Flail that gives Heaven's Fury 3 additional rays and a 70-90% increased damage roll.",
+        "type": "unique-skill amplifier",
+        "scalingModel": "More Heaven's Fury ray events plus a large additive/increased damage range on the same payoff skill.",
+        "confidence": "confirmed-public",
+        "priority": "required",
+        "refs": [
+          {
+            "name": "Sunbrand",
+            "kind": "unique",
+            "sourceKey": "v_unique_items.slot_name=Flail",
+            "sourceUrl": "https://diablo4.life/database/uniques/sunbrand",
+            "confidence": "confirmed-public",
+            "notes": "Local database lists Sunbrand as a Paladin Unique Flail."
+          },
+          {
+            "name": "Heaven's Fury",
+            "kind": "skill",
+            "sourceKey": "v_skill_summary.skill_name=Heaven's Fury",
+            "confidence": "confirmed-public"
+          }
+        ],
+        "notes": "The meme is literal: the required weapon is a flail, and the payoff is spinning rays."
+      },
+      {
+        "name": "Walk With The Light ray pile",
+        "summary": "The Heaven's Fury upgrade Walk With The Light splits the skill into 5 orbiting beams for 7 seconds; Sunbrand should add rays to that beam plan, but exact final ray behavior needs client verification.",
+        "type": "persistent event density",
+        "scalingModel": "Five orbiting beams from the skill-tree upgrade, plus Sunbrand's additional rays if the effects stack directly.",
+        "confidence": "hypothesis",
+        "priority": "required",
+        "refs": [
+          {
+            "name": "Walk With The Light",
+            "kind": "skill-node",
+            "sourceKey": "v_skill_tree_nodes.base_skill_name=Heaven's Fury",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Sunbrand",
+            "kind": "unique",
+            "sourceKey": "v_unique_item_scalars.item_name=Sunbrand",
+            "confidence": "confirmed-public"
+          }
+        ],
+        "notes": "Treat the 8-ray version as the build hypothesis, not a confirmed client fact."
+      },
+      {
+        "name": "Judgement cooldown laundering",
+        "summary": "Judicator Oath lets Basic Skills apply Judgement and Judicator Core Skills consume it; Aspect of Contemplation then turns consumed Judgement into active cooldown reduction.",
+        "type": "cooldown loop",
+        "scalingModel": "Holy Bolt applies Judgement, Blessed Hammer consumes it, and repeated consumptions reduce active cooldowns while also enabling Judgement damage scaling.",
+        "confidence": "likely",
+        "priority": "required",
+        "refs": [
+          {
+            "name": "Judicator",
+            "kind": "class-specialization",
+            "sourceKey": "v_class_specializations.specialization_name=Judicator",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Aspect of Contemplation",
+            "kind": "aspect",
+            "sourceKey": "v_aspects.aspect_name=Aspect of Contemplation",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Holy Bolt",
+            "kind": "skill",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Blessed Hammer",
+            "kind": "skill",
+            "confidence": "confirmed-public"
+          }
+        ],
+        "notes": "Local specialization wording notes that public guide wording may lag Season 14 patch changes, so the Oath behavior is marked likely at the full-engine level."
+      },
+      {
+        "name": "Aura and rune recast grease",
+        "summary": "Resplendence, Zan/Zec, cooldown affixes, and resource tempers are layered to make the 30-second Heaven's Fury cooldown less humiliating.",
+        "type": "uptime support",
+        "scalingModel": "Aura casts reduce non-Aura cooldowns, Ultimate casts generate Offering for Ultimate cooldown reduction, and gear adds flat cooldown reduction from the current affix pool.",
+        "confidence": "likely",
+        "priority": "recommended",
+        "refs": [
+          {
+            "name": "Resplendence",
+            "kind": "paragon-glyph",
+            "sourceKey": "v_paragon_glyphs.glyph_name=Resplendence",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Zan",
+            "kind": "rune",
+            "sourceKey": "v_rune_pairing_candidates.generator_rune=Zan",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Zec",
+            "kind": "rune",
+            "sourceKey": "v_rune_pairing_candidates.spender_rune=Zec",
+            "confidence": "confirmed-public"
+          }
+        ]
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "Sunbrand roll",
+        "target": "70-90% increased Heaven's Fury damage",
+        "condition": "Equip Sunbrand and prioritize the top end of the unique power.",
+        "value": "90% preferred",
+        "unit": "unique power roll",
+        "why": "The build spends its weapon slot on this joke, so the joke needs a strong roll.",
+        "priority": "required",
+        "confidence": "confirmed-public",
+        "refs": [
+          {
+            "name": "Sunbrand",
+            "kind": "unique",
+            "confidence": "confirmed-public"
+          }
+        ]
+      },
+      {
+        "name": "Heaven's Fury duration mode",
+        "target": "Duration passive plus Walk With The Light selected",
+        "condition": "Do not select Final Justice or Triplicate in the same upgrade group.",
+        "value": "5 orbiting beams for 7 seconds, plus Duration passive",
+        "why": "This preserves the moving sprinkler fantasy and avoids the Final Justice cooldown penalty.",
+        "priority": "required",
+        "confidence": "confirmed-public",
+        "refs": [
+          {
+            "name": "Duration",
+            "kind": "skill-node",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Walk With The Light",
+            "kind": "skill-node",
+            "confidence": "confirmed-public"
+          }
+        ]
+      },
+      {
+        "name": "Cooldown stack",
+        "target": "Cooldown Reduction on Helm, Amulet, Gloves, Rings, and any legal Sunbrand enchant slot",
+        "condition": "Use current active affix pool and Worldly Stability ring temper support.",
+        "value": "5-8% per eligible ordinary gear slot from local endgame affix ranges",
+        "unit": "percent",
+        "why": "The build is only funny if Heaven's Fury is online often enough to be the main event.",
+        "priority": "required",
+        "confidence": "confirmed-public",
+        "refs": [
+          {
+            "name": "Cooldown Reduction",
+            "kind": "gear-affix",
+            "sourceKey": "v_item_affix_endgame_ranges.affix_name=Cooldown Reduction",
+            "confidence": "confirmed-public"
+          }
+        ]
+      },
+      {
+        "name": "Judgement consumption cadence",
+        "target": "Holy Bolt applies Judgement and Blessed Hammer consumes it often enough to trigger Aspect of Contemplation repeatedly.",
+        "condition": "Keep Blessed Hammer cheap and fast rather than maxing raw spender damage early.",
+        "value": "One or more Judgement consumptions between Heaven's Fury casts",
+        "why": "This is the main non-rune cooldown engine.",
+        "priority": "recommended",
+        "confidence": "likely"
+      }
+    ],
+    "failureModes": [
+      {
+        "name": "Sunbrand does not stack cleanly with Walk With The Light",
+        "impact": "The build still has a Unique Flail and empowered Heaven's Fury, but the 8-ray sprinkler fantasy becomes a 5-ray build with extra damage.",
+        "severity": "warning",
+        "confidence": "unknown",
+        "notes": "Needs current-client ray-count verification."
+      },
+      {
+        "name": "Heaven's Fury is not treated as channeling",
+        "impact": "Aspect of Channeling becomes dead weight and should be replaced by Aspect of Holy Punishment or Aspect of Proselytizing on Amulet.",
+        "severity": "warning",
+        "confidence": "hypothesis",
+        "notes": "The skill description implies a grasp/release sequence, but channel-tag coverage is not confirmed in the queried rows."
+      },
+      {
+        "name": "Cooldown engine underperforms on bosses",
+        "impact": "Bossing becomes Blessed Hammer filler with periodic flail laser windows rather than continuous beams.",
+        "severity": "warning",
+        "confidence": "likely"
+      },
+      {
+        "name": "Schema slot mismatch for flails",
+        "impact": "The planner schema has no Flail gear slot enum, so Sunbrand is represented as a Weapon with extensions.dbSlot set to Flail.",
+        "severity": "info",
+        "confidence": "confirmed"
+      }
+    ],
+    "notes": "Prompt interpretation: make a meme build with flails. Assumption: endgame softcore prototype, no mythic requirement, no trade/SSF restriction. Database coverage gap: local data confirms Flail as an item slot and Sunbrand as a Paladin Unique Flail, but the planner schema models the equipped slot as Weapon rather than Flail.",
+    "extensions": {
+      "jeffThesis": "Use a flail to become a mobile holy sprinkler; it is goofy, but Sunbrand gives enough real numbers to test.",
+      "promptConstraint": "flails",
+      "mandatoryWeaponType": "Flail",
+      "confidenceLabel": "Prototype Candidate"
+    }
+  },
+  "guide": {
+    "overview": "Flail Mary is a Paladin prototype that equips Sunbrand, a Unique Flail, and turns Heaven's Fury into the main payoff. Holy Bolt and Holy Light Aura apply Judgement, Blessed Hammer consumes it to keep cooldowns moving, and the final screen goal is simple: walk around while orbiting Heaven's Fury rays make the room look like a bad safety inspection.",
+    "rotation": {
+      "summary": "Judge, hammer, aura, then let the Sunbrand beams do the embarrassing part.",
+      "opener": [
+        "Enter a pack with Holy Bolt to apply Judgement and activate Aspect of Might if equipped.",
+        "Cast Holy Light Aura with Rite of Judgement to spread more Judgement and start the aura cooldown package.",
+        "Spend Blessed Hammer into Judged enemies to consume Judgement and trigger Aspect of Contemplation.",
+        "Cast Heaven's Fury when elites are grouped, then move through the pack so Walk With The Light beams overlap targets.",
+        "Use Defiance Aura before crowd control or burst damage; use Rally when Faith or movement drops."
+      ],
+      "sequence": [
+        "Holy Bolt until Judgement is present.",
+        "Blessed Hammer to consume Judgement and create chain/explosion filler damage.",
+        "Holy Light Aura on cooldown for Judgement, healing, and Resplendence-style cooldown support.",
+        "Heaven's Fury on elite packs, bosses, and objective rooms.",
+        "Defiance Aura and Rally maintain survival, movement, and Faith."
+      ],
+      "bossing": [
+        "Hold Heaven's Fury until the boss is stationary or forced into a predictable lane.",
+        "Circle close enough for orbiting beams to tick without standing in avoidable mechanics.",
+        "Use Blessed Hammer between Heaven's Fury windows to keep Judgement consumption and cooldown reduction active.",
+        "If Aspect of Channeling fails client verification, swap the Amulet aspect to Aspect of Holy Punishment for boss consistency."
+      ],
+      "speedFarm": [
+        "Skip isolated trash unless Heaven's Fury is already active.",
+        "Use Rally and Boots movement to drag orbiting beams through density.",
+        "Spend Holy Light Aura on packs rather than saving it for bosses; the build wants cooldown churn."
+      ],
+      "notes": "Do not hard-cast Final Justice in this version; the build is built around moving orbiting beams, not a stationary delayed nuke."
+    },
+    "strengths": [
+      "Real flail-specific anchor through Sunbrand.",
+      "High event density if Sunbrand rays and Walk With The Light stack cleanly.",
+      "Judicator loop gives the meme build a practical cooldown plan.",
+      "No mythic unique required for the core version."
+    ],
+    "weaknesses": [
+      "Primary payoff is tied to an Ultimate cooldown.",
+      "Ray stacking and channel-tag assumptions require current-client verification.",
+      "Single-target can slump if orbiting beams miss or the boss moves.",
+      "Sunbrand occupies the weapon slot, limiting offensive aspect placement."
+    ],
+    "variants": [
+      {
+        "name": "Light's Rebuke Flail Variant",
+        "summary": "Swap Sunbrand for Light's Rebuke and rebuild around Divine Lance, Stacking Damage, and Tip of the Spear. Do not equip both flails at once in this guide shell.",
+        "tradeoffs": [
+          "Less sprinkler, more lance comedy.",
+          "Potentially better focused boss damage if Divine Lance's subsequent-hit bonus lands consistently.",
+          "Loses the Heaven's Fury ray identity."
+        ],
+        "refs": [
+          {
+            "name": "Light's Rebuke",
+            "kind": "unique",
+            "sourceKey": "v_unique_items.slot_name=Flail",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Divine Lance",
+            "kind": "skill",
+            "confidence": "confirmed-public"
+          }
+        ]
+      },
+      {
+        "name": "No-Channeling Variant",
+        "summary": "If Heaven's Fury does not count as channeling, replace Aspect of Channeling with Aspect of Holy Punishment on Amulet and move the existing Holy Punishment slot to Proselytizing.",
+        "tradeoffs": [
+          "Lower ceiling if channeling works.",
+          "Cleaner confirmed Holy-damage scaling.",
+          "Less dependence on ambiguous tag behavior."
+        ],
+        "refs": [
+          {
+            "name": "Aspect of Holy Punishment",
+            "kind": "aspect",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Aspect of Proselytizing",
+            "kind": "aspect",
+            "confidence": "confirmed-public"
+          }
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "stage": "Leveling",
+        "range": "1-50",
+        "title": "Build the Judicator shell before the flail drops",
+        "goals": [
+          "Use Judicator Oath, Holy Bolt, Blessed Hammer, Holy Light Aura, Defiance Aura, Rally, and Heaven's Fury.",
+          "Practice the Judge then consume loop without needing Sunbrand."
+        ],
+        "actions": [
+          "Select Holy Bolt Judgement and Ricocheting Bolt.",
+          "Select Blessed Hammer Cast Speed, Cost Reduction, and Shattering Blow.",
+          "Use any one-handed weapon and shield with Holy Damage, cooldown, resource, and life affixes.",
+          "Keep Heaven's Fury as the payoff even before Sunbrand so the rotation does not change later."
+        ],
+        "refs": [
+          {
+            "name": "Judicator",
+            "kind": "class-specialization",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Blessed Hammer",
+            "kind": "skill",
+            "confidence": "confirmed-public"
+          }
+        ]
+      },
+      {
+        "stage": "Starter Endgame",
+        "range": "50-100",
+        "title": "Assemble the cooldown clown car",
+        "goals": [
+          "Acquire cooldown aspects and Judicator support.",
+          "Make Heaven's Fury available often enough to justify building around it."
+        ],
+        "actions": [
+          "Equip Aspect of Contemplation on a ring.",
+          "Use Aspect of Firm Decree, Aspect of Might, and Aspect of Shelter for the defensive floor.",
+          "Temper Worldly Stability Cooldown Reduction or Resource Generation on rings.",
+          "Add Judicator Finesse and Elemental Finesse: Day where slot rules allow."
+        ],
+        "refs": [
+          {
+            "name": "Aspect of Contemplation",
+            "kind": "aspect",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Worldly Stability",
+            "kind": "temper",
+            "confidence": "confirmed-public"
+          }
+        ]
+      },
+      {
+        "stage": "Core Version",
+        "range": "Sunbrand acquired",
+        "title": "Turn on the flail sprinkler",
+        "goals": [
+          "Equip Sunbrand and lock Heaven's Fury into Walk With The Light.",
+          "Prioritize the Sunbrand unique roll and cooldown stack."
+        ],
+        "actions": [
+          "Equip Sunbrand in the Weapon slot and record the unique power roll.",
+          "Select Heaven's Fury Duration and Walk With The Light.",
+          "Use Holy Light Aura before Heaven's Fury when possible to start Judgement and cooldown support.",
+          "Run Zan/Zec if the socket plan allows a single Ultimate cooldown rune pair."
+        ],
+        "refs": [
+          {
+            "name": "Sunbrand",
+            "kind": "unique",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Walk With The Light",
+            "kind": "skill-node",
+            "confidence": "confirmed-public"
+          }
+        ]
+      },
+      {
+        "stage": "Optimized",
+        "range": "Paragon and charm setup",
+        "title": "Scale Judgement Day and aura uptime",
+        "goals": [
+          "Prioritize Sentencing, Relentless, Beacon, and Endure boards.",
+          "Add Heaven's Radiant Fire charms if talisman slots permit.",
+          "Keep a mercenary or ally inside aura range for Beacon."
+        ],
+        "actions": [
+          "Level Judicator, Law, Resplendence, Canny, and Undaunted glyphs in that order.",
+          "Use Heaven's Radiant Fire as the preferred Paladin charm set because its Judgement Day bonuses match the build's loop.",
+          "Masterwork cooldown first, then Holy Damage multiplier, then Maximum Life or Armor."
+        ],
+        "refs": [
+          {
+            "name": "Sentencing",
+            "kind": "paragon-board",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Heaven's Radiant Fire",
+            "kind": "talisman-set",
+            "confidence": "confirmed-public"
+          }
+        ]
+      },
+      {
+        "stage": "Validation",
+        "range": "First test session",
+        "title": "Prove the joke is functional",
+        "goals": [
+          "Count Heaven's Fury rays with and without Sunbrand.",
+          "Verify whether Aspect of Channeling affects Heaven's Fury.",
+          "Measure whether Judgement consumption noticeably reduces Heaven's Fury downtime."
+        ],
+        "actions": [
+          "Record a short clip of Walk With The Light without Sunbrand, then with Sunbrand.",
+          "Compare Amulet Aspect of Channeling against Aspect of Holy Punishment on the same target class.",
+          "If the downtime loop fails, downgrade status from testing to blueprint and rebuild around Light's Rebuke Divine Lance."
+        ],
+        "refs": [
+          {
+            "name": "Aspect of Channeling",
+            "kind": "aspect",
+            "confidence": "hypothesis"
+          }
+        ],
+        "notes": "No broad inventory test needed; this is a tight interaction check."
+      }
+    ],
+    "notes": "Mercenary note: Beacon board wants an ally or mercenary inside an Aura. Keep the mercenary near the Paladin when testing Beacon uptime.",
+    "extensions": {
+      "memeRead": "A holy lawn sprinkler powered by a flail.",
+      "databaseCoverageGaps": [
+        "Exact Sunbrand ray behavior with Walk With The Light is not recorded in local test data.",
+        "Heaven's Fury channel-tag behavior is not confirmed in queried skill tags.",
+        "Planner schema does not expose Flail as a gear slot enum."
+      ]
+    }
+  },
+  "skills": {
+    "loadout": [
+      {
+        "name": "Holy Bolt",
+        "role": "Judgement applicator and basic filler",
+        "priority": "required",
+        "rank": 1,
+        "targetRank": 5,
+        "button": "1",
+        "tags": [
+          "Basic",
+          "Judicator",
+          "Holy"
+        ],
+        "notes": "Select Judgement so Basic casts apply the state the build consumes."
+      },
+      {
+        "name": "Blessed Hammer",
+        "role": "Judgement consumer and filler spender",
+        "priority": "required",
+        "rank": 5,
+        "targetRank": 12,
+        "button": "2",
+        "tags": [
+          "Core",
+          "Judicator",
+          "Holy"
+        ],
+        "notes": "Keep it Judicator; do not take Disciple's Halo in this version."
+      },
+      {
+        "name": "Holy Light Aura",
+        "role": "Aura, Judgement spread, healing, cooldown support",
+        "priority": "required",
+        "rank": 1,
+        "targetRank": 8,
+        "button": "3",
+        "tags": [
+          "Aura",
+          "Judicator",
+          "Holy"
+        ]
+      },
+      {
+        "name": "Defiance Aura",
+        "role": "defensive floor and Unstoppable access",
+        "priority": "required",
+        "rank": 1,
+        "targetRank": 5,
+        "button": "4",
+        "tags": [
+          "Aura",
+          "Defensive",
+          "Juggernaut"
+        ]
+      },
+      {
+        "name": "Rally",
+        "role": "Faith refill and movement",
+        "priority": "recommended",
+        "rank": 1,
+        "targetRank": 1,
+        "button": "5",
+        "tags": [
+          "Valor",
+          "Zealot"
+        ],
+        "notes": "Included for Faith and movement even though the Oath is Judicator."
+      },
+      {
+        "name": "Heaven's Fury",
+        "role": "primary flail payoff",
+        "priority": "required",
+        "rank": 1,
+        "targetRank": 8,
+        "button": "6",
+        "tags": [
+          "Ultimate",
+          "Judicator",
+          "Holy"
+        ],
+        "notes": "The build exists to make this skill ridiculous with Sunbrand."
+      }
+    ],
+    "specializations": [
+      {
+        "name": "Judicator",
+        "kind": "class-specialization",
+        "sourceKey": "v_class_specializations.specialization_name=Judicator",
+        "confidence": "confirmed-public",
+        "notes": "Choose this Oath only; Zealot/Juggernaut/Disciple Oaths are mutually exclusive alternatives."
+      }
+    ],
+    "treeSelections": [
+      {
+        "skill": "Holy Bolt",
+        "name": "Cast Speed",
+        "group": "passives_1",
+        "rank": 1,
+        "priority": "recommended",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Holy Bolt",
+        "name": "Judgement",
+        "group": "passives_2",
+        "rank": 1,
+        "priority": "required",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Holy Bolt",
+        "name": "Ricocheting Bolt",
+        "group": "upgrades_1",
+        "rank": 1,
+        "priority": "recommended",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Blessed Hammer",
+        "name": "Cast Speed",
+        "group": "passives_1",
+        "rank": 1,
+        "priority": "recommended",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Blessed Hammer",
+        "name": "Cost Reduction",
+        "group": "passives_2",
+        "rank": 1,
+        "priority": "recommended",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Blessed Hammer",
+        "name": "Shattering Blow",
+        "group": "upgrades_1",
+        "rank": 1,
+        "priority": "required",
+        "confidence": "confirmed-public",
+        "notes": "Extra explosions increase event density without converting Blessed Hammer away from Judicator."
+      },
+      {
+        "skill": "Holy Light Aura",
+        "name": "Judgement Damage Bonus",
+        "group": "passives_1",
+        "rank": 1,
+        "priority": "recommended",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Holy Light Aura",
+        "name": "Additional Targets",
+        "group": "passives_2",
+        "rank": 1,
+        "priority": "recommended",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Holy Light Aura",
+        "name": "Rite of Judgement",
+        "group": "upgrades_1",
+        "rank": 1,
+        "priority": "required",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Defiance Aura",
+        "name": "Potency",
+        "group": "passives_1",
+        "rank": 1,
+        "priority": "recommended",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Defiance Aura",
+        "name": "Maximum Life",
+        "group": "passives_2",
+        "rank": 1,
+        "priority": "recommended",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Defiance Aura",
+        "name": "Rite of Prayer",
+        "group": "upgrades_1",
+        "rank": 1,
+        "priority": "recommended",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Rally",
+        "name": "Duration Bonus",
+        "group": "passives_1",
+        "rank": 1,
+        "priority": "optional",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Rally",
+        "name": "Cost Reduction",
+        "group": "passives_2",
+        "rank": 1,
+        "priority": "optional",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Rally",
+        "name": "Words of Rejuvenation",
+        "group": "upgrades_1",
+        "rank": 1,
+        "priority": "recommended",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Heaven's Fury",
+        "name": "Duration",
+        "group": "passives_1",
+        "rank": 1,
+        "priority": "required",
+        "confidence": "confirmed-public"
+      },
+      {
+        "skill": "Heaven's Fury",
+        "name": "Walk With The Light",
+        "group": "upgrades_1",
+        "rank": 1,
+        "priority": "required",
+        "confidence": "confirmed-public"
+      }
+    ],
+    "rankTargets": [
+      {
+        "skill": "Heaven's Fury",
+        "targetRank": 8,
+        "reason": "Primary Sunbrand payoff; ranks increase the skill the build is built around.",
+        "priority": "required"
+      },
+      {
+        "skill": "Holy Light Aura",
+        "targetRank": 8,
+        "reason": "Ranks support aura value, Rite of Judgement cooldown behavior, and Beacon/Resplendence style uptime.",
+        "priority": "recommended"
+      },
+      {
+        "skill": "Blessed Hammer",
+        "targetRank": 12,
+        "reason": "Filler spender and Judgement consumer; local affix pool includes Ranks to Blessed Hammer on Gloves.",
+        "priority": "recommended"
+      },
+      {
+        "skill": "Defiance Aura",
+        "targetRank": 5,
+        "reason": "Defensive aura floor for Tower/Pit testing.",
+        "priority": "recommended"
+      }
+    ],
+    "notes": "Skill tree choices obey choose-one groups from v_skill_tree_groups. Only Heaven's Fury is allocated as an Ultimate.",
+    "extensions": {
+      "forbiddenSelections": [
+        "Heaven's Fury: Final Justice",
+        "Heaven's Fury: Triplicate",
+        "Blessed Hammer: Disciple's Halo"
+      ]
+    }
+  },
+  "gear": {
+    "statPriorities": [
+      {
+        "stat": "Cooldown Reduction",
+        "priority": "required",
+        "reason": "Heaven's Fury is the payoff and has a cooldown.",
+        "target": "Prioritize every legal 5-8% ordinary gear slot and Worldly Stability ring temper."
+      },
+      {
+        "stat": "Sunbrand unique power",
+        "priority": "required",
+        "reason": "The flail slot only earns its keep if the 70-90% Heaven's Fury damage roll is high.",
+        "target": "90% preferred"
+      },
+      {
+        "stat": "x% Holy Damage Multiplier",
+        "priority": "required",
+        "reason": "Heaven's Fury, Holy Light Aura, Holy Bolt, and Blessed Hammer are Holy-damage leaning.",
+        "target": "Prioritize Paladin multiplier rolls over generic additive Holy Damage."
+      },
+      {
+        "stat": "Judicator Damage",
+        "priority": "recommended",
+        "reason": "The main active skills are Judicator-tagged."
+      },
+      {
+        "stat": "Resource Generation",
+        "priority": "recommended",
+        "reason": "Blessed Hammer consumes Faith during filler windows."
+      },
+      {
+        "stat": "Maximum Life",
+        "priority": "recommended",
+        "reason": "Keeps the build alive while walking beams through packs."
+      },
+      {
+        "stat": "Movement Speed",
+        "priority": "recommended",
+        "reason": "Orbiting beam overlap depends on positioning."
+      },
+      {
+        "stat": "Ranks to Blessed Hammer",
+        "priority": "optional",
+        "reason": "Local affix data supports this on Gloves and it improves filler damage."
+      },
+      {
+        "stat": "Ranks to Holy Light Aura",
+        "priority": "optional",
+        "reason": "Local affix data supports this on Chest Armor and it strengthens the aura layer."
+      }
+    ],
+    "slots": [
+      {
+        "slot": "Helm",
+        "priority": "recommended",
+        "item": {
+          "name": "Legendary Helm",
+          "kind": "item",
+          "confidence": "likely"
+        },
+        "aspect": {
+          "name": "Aspect of Might",
+          "kind": "aspect",
+          "confidence": "confirmed-public"
+        },
+        "affixes": [
+          {
+            "name": "Cooldown Reduction",
+            "priority": "required",
+            "target": "5-8%",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Maximum Life",
+            "priority": "recommended",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Resource Generation",
+            "priority": "recommended",
+            "confidence": "confirmed-public"
+          }
+        ],
+        "tempers": [
+          {
+            "manual": {
+              "name": "Aura Innovation",
+              "kind": "temper",
+              "confidence": "confirmed-public"
+            },
+            "affix": "Holy Light Aura Potency",
+            "priority": "recommended"
+          }
+        ],
+        "masterwork": "Cooldown Reduction first, then Maximum Life.",
+        "sockets": [
+          "Royal Ruby"
+        ]
+      },
+      {
+        "slot": "Chest Armor",
+        "priority": "recommended",
+        "item": {
+          "name": "Legendary Chest Armor",
+          "kind": "item",
+          "confidence": "likely"
+        },
+        "aspect": {
+          "name": "Aspect of Shelter",
+          "kind": "aspect",
+          "confidence": "confirmed-public"
+        },
+        "affixes": [
+          {
+            "name": "Ranks to Holy Light Aura",
+            "priority": "recommended",
+            "target": "2-3 ranks",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Maximum Life",
+            "priority": "recommended",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Strength",
+            "priority": "optional",
+            "confidence": "confirmed-public"
+          }
+        ],
+        "tempers": [
+          {
+            "manual": {
+              "name": "Aura Innovation",
+              "kind": "temper",
+              "confidence": "confirmed-public"
+            },
+            "affix": "Defiance Aura Potency",
+            "priority": "recommended"
+          }
+        ],
+        "masterwork": "Ranks to Holy Light Aura or Maximum Life.",
+        "sockets": [
+          "Royal Ruby"
+        ]
+      },
+      {
+        "slot": "Gloves",
+        "priority": "required",
+        "item": {
+          "name": "Legendary Gloves",
+          "kind": "item",
+          "confidence": "likely"
+        },
+        "aspect": {
+          "name": "Aspect of Holy Punishment",
+          "kind": "aspect",
+          "confidence": "confirmed-public"
+        },
+        "affixes": [
+          {
+            "name": "Ranks to Blessed Hammer",
+            "priority": "recommended",
+            "target": "2-3 ranks",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Cooldown Reduction",
+            "priority": "required",
+            "target": "5-8%",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "x% Holy Damage Multiplier",
+            "priority": "required",
+            "target": "12-20%",
+            "confidence": "confirmed-public"
+          }
+        ],
+        "tempers": [
+          {
+            "manual": {
+              "name": "Judicator Finesse",
+              "kind": "temper",
+              "confidence": "confirmed-public"
+            },
+            "affix": "Judicator Damage",
+            "priority": "required"
+          }
+        ],
+        "masterwork": "x% Holy Damage Multiplier or Cooldown Reduction."
+      },
+      {
+        "slot": "Pants",
+        "priority": "recommended",
+        "item": {
+          "name": "Legendary Pants",
+          "kind": "item",
+          "confidence": "likely"
+        },
+        "aspect": {
+          "name": "Juggernaut's Aspect",
+          "kind": "aspect",
+          "confidence": "confirmed-public"
+        },
+        "affixes": [
+          {
+            "name": "Maximum Life",
+            "priority": "recommended",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Strength",
+            "priority": "optional",
+            "confidence": "confirmed-public"
+          }
+        ],
+        "masterwork": "Maximum Life or armor roll.",
+        "sockets": [
+          "Royal Ruby"
+        ]
+      },
+      {
+        "slot": "Boots",
+        "priority": "recommended",
+        "item": {
+          "name": "Legendary Boots",
+          "kind": "item",
+          "confidence": "likely"
+        },
+        "aspect": {
+          "name": "Aspect of Holy Cadence",
+          "kind": "aspect",
+          "confidence": "confirmed-public"
+        },
+        "affixes": [
+          {
+            "name": "Movement Speed",
+            "priority": "recommended",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Maximum Life",
+            "priority": "recommended",
+            "confidence": "confirmed-public"
+          }
+        ],
+        "tempers": [
+          {
+            "manual": {
+              "name": "Natural Motion",
+              "kind": "temper",
+              "confidence": "confirmed-public"
+            },
+            "affix": "Movement Speed",
+            "priority": "recommended"
+          }
+        ],
+        "masterwork": "Movement Speed for smoother beam overlap."
+      },
+      {
+        "slot": "Amulet",
+        "priority": "required",
+        "item": {
+          "name": "Legendary Amulet",
+          "kind": "item",
+          "confidence": "likely"
+        },
+        "aspect": {
+          "name": "Aspect of Channeling",
+          "kind": "aspect",
+          "confidence": "hypothesis",
+          "notes": "Use only if Heaven's Fury is confirmed to benefit from channeling."
+        },
+        "affixes": [
+          {
+            "name": "Cooldown Reduction",
+            "priority": "required",
+            "target": "5-8%",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "x% Holy Damage Multiplier",
+            "priority": "required",
+            "target": "12-20%",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Maximum Life",
+            "priority": "recommended",
+            "confidence": "confirmed-public"
+          }
+        ],
+        "tempers": [
+          {
+            "manual": {
+              "name": "Elemental Finesse: Day",
+              "kind": "temper",
+              "confidence": "confirmed-public"
+            },
+            "affix": "Holy Damage",
+            "priority": "recommended"
+          },
+          {
+            "manual": {
+              "name": "Natural Motion",
+              "kind": "temper",
+              "confidence": "confirmed-public"
+            },
+            "affix": "Mobility Cooldown Reduction",
+            "priority": "optional"
+          }
+        ],
+        "masterwork": "Cooldown Reduction first; swap aspect if channel test fails.",
+        "sockets": [
+          "Royal Diamond"
+        ]
+      },
+      {
+        "slot": "Ring 1",
+        "priority": "required",
+        "item": {
+          "name": "Legendary Ring",
+          "kind": "item",
+          "confidence": "likely"
+        },
+        "aspect": {
+          "name": "Aspect of Contemplation",
+          "kind": "aspect",
+          "confidence": "confirmed-public"
+        },
+        "affixes": [
+          {
+            "name": "Cooldown Reduction",
+            "priority": "required",
+            "target": "5-8%",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Resource Generation",
+            "priority": "recommended",
+            "target": "8-11%",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Holy Damage",
+            "priority": "recommended",
+            "target": "20-40%",
+            "confidence": "confirmed-public"
+          }
+        ],
+        "tempers": [
+          {
+            "manual": {
+              "name": "Worldly Stability",
+              "kind": "temper",
+              "confidence": "confirmed-public"
+            },
+            "affix": "Cooldown Reduction",
+            "priority": "required"
+          }
+        ],
+        "masterwork": "Cooldown Reduction."
+      },
+      {
+        "slot": "Ring 2",
+        "priority": "recommended",
+        "item": {
+          "name": "Legendary Ring",
+          "kind": "item",
+          "confidence": "likely"
+        },
+        "aspect": {
+          "name": "Aspect of Apogeic Furor",
+          "kind": "aspect",
+          "sourceKey": "legendary_generic_126_x2",
+          "confidence": "confirmed-public",
+          "notes": "Use the Resource-slot version that reduces other active cooldowns after casting an Ultimate."
+        },
+        "affixes": [
+          {
+            "name": "Cooldown Reduction",
+            "priority": "required",
+            "target": "5-8%",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Resource Generation",
+            "priority": "recommended",
+            "target": "8-11%",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "x% Holy Damage Multiplier",
+            "priority": "recommended",
+            "target": "6-10%",
+            "confidence": "confirmed-public"
+          }
+        ],
+        "tempers": [
+          {
+            "manual": {
+              "name": "Worldly Stability",
+              "kind": "temper",
+              "confidence": "confirmed-public"
+            },
+            "affix": "Resource Generation",
+            "priority": "recommended"
+          }
+        ],
+        "masterwork": "Cooldown Reduction or Resource Generation."
+      },
+      {
+        "slot": "Weapon",
+        "priority": "required",
+        "item": {
+          "name": "Sunbrand",
+          "kind": "unique",
+          "sourceKey": "v_unique_items.item_name=Sunbrand",
+          "sourceUrl": "https://diablo4.life/database/uniques/sunbrand",
+          "confidence": "confirmed-public",
+          "notes": "Local database slot is Flail; planner schema represents it as Weapon."
+        },
+        "affixes": [
+          {
+            "name": "Sunbrand: Heaven's Fury gains 3 additional rays and deals increased damage",
+            "priority": "required",
+            "target": "70-90%",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "x% Holy Damage Multiplier",
+            "priority": "recommended",
+            "target": "6-10% if enchantable/legal on this unique",
+            "confidence": "likely"
+          },
+          {
+            "name": "Cooldown Reduction",
+            "priority": "optional",
+            "target": "5-8% if enchantable/legal on this unique",
+            "confidence": "likely"
+          }
+        ],
+        "tempers": [
+          {
+            "manual": {
+              "name": "Judicator Finesse",
+              "kind": "temper",
+              "confidence": "confirmed-public"
+            },
+            "affix": "Judicator Damage",
+            "priority": "recommended",
+            "notes": "Only if the current unique itemization rules allow tempering or analogous modification on this item."
+          }
+        ],
+        "masterwork": "Highest Sunbrand unique roll first; then any legal Holy or cooldown affix.",
+        "sockets": [
+          "Runeword pair if weapon socket rules permit; otherwise use armor sockets."
+        ],
+        "extensions": {
+          "dbSlot": "Flail",
+          "requiredWeaponType": "Flail"
+        }
+      },
+      {
+        "slot": "Shield",
+        "priority": "required",
+        "item": {
+          "name": "Legendary Shield",
+          "kind": "item",
+          "confidence": "likely"
+        },
+        "aspect": {
+          "name": "Aspect of Firm Decree",
+          "kind": "aspect",
+          "confidence": "confirmed-public"
+        },
+        "affixes": [
+          {
+            "name": "Cooldown Reduction",
+            "priority": "recommended",
+            "target": "5-8% if using Off-Hand affix eligibility",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Damage Reduction",
+            "priority": "recommended",
+            "target": "7-11%",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Maximum Life",
+            "priority": "recommended",
+            "confidence": "confirmed-public"
+          }
+        ],
+        "tempers": [
+          {
+            "manual": {
+              "name": "Judicator Finesse",
+              "kind": "temper",
+              "confidence": "confirmed-public"
+            },
+            "affix": "Judicator Damage",
+            "priority": "recommended"
+          },
+          {
+            "manual": {
+              "name": "Elemental Finesse: Day",
+              "kind": "temper",
+              "confidence": "confirmed-public"
+            },
+            "affix": "Holy Damage",
+            "priority": "recommended"
+          }
+        ],
+        "masterwork": "Cooldown Reduction or Damage Reduction."
+      }
+    ],
+    "notes": "Exact Sunbrand mutable affixes should be checked in client because Season 14 local process notes say Unique affixes can be altered, while per-unique legal affix outcomes are not normalized here.",
+    "extensions": {
+      "mandatoryPieces": [
+        "Sunbrand"
+      ],
+      "upgradePieces": [
+        "High-roll Sunbrand",
+        "Heaven's Radiant Fire talisman set",
+        "Cooldown-heavy rings"
+      ]
+    }
+  },
+  "paragon": {
+    "boards": [
+      {
+        "name": "Starting Board",
+        "order": 1,
+        "rotation": "unknown",
+        "attachment": "starter",
+        "glyph": {
+          "name": "Judicator",
+          "kind": "paragon-glyph",
+          "confidence": "confirmed-public"
+        },
+        "glyphLevel": 15,
+        "glyphRadius": 4,
+        "selectedNodes": [
+          {
+            "name": "Path to glyph socket",
+            "priority": "required"
+          }
+        ],
+        "notes": "Use Judicator early because the build's main skills carry the Judicator tag."
+      },
+      {
+        "name": "Sentencing",
+        "order": 2,
+        "rotation": "unknown",
+        "attachment": "first damage board",
+        "glyph": {
+          "name": "Law",
+          "kind": "paragon-glyph",
+          "confidence": "confirmed-public"
+        },
+        "glyphLevel": 15,
+        "glyphRadius": 4,
+        "selectedNodes": [
+          {
+            "name": "Sentencing",
+            "priority": "required"
+          }
+        ],
+        "notes": "Legendary node says Judged enemies take x90% more damage from you until they die."
+      },
+      {
+        "name": "Relentless",
+        "order": 3,
+        "rotation": "unknown",
+        "attachment": "cooldown board",
+        "glyph": {
+          "name": "Resplendence",
+          "kind": "paragon-glyph",
+          "confidence": "confirmed-public"
+        },
+        "glyphLevel": 15,
+        "glyphRadius": 4,
+        "selectedNodes": [
+          {
+            "name": "Relentless",
+            "priority": "required"
+          }
+        ],
+        "notes": "Relentless gives moving damage and cooldown reduction; Resplendence reduces non-Aura cooldowns after Aura casts."
+      },
+      {
+        "name": "Beacon",
+        "order": 4,
+        "rotation": "unknown",
+        "attachment": "aura board",
+        "glyph": {
+          "name": "Canny",
+          "kind": "paragon-glyph",
+          "confidence": "confirmed-public"
+        },
+        "glyphLevel": 15,
+        "glyphRadius": 4,
+        "selectedNodes": [
+          {
+            "name": "Beacon",
+            "priority": "recommended"
+          }
+        ],
+        "notes": "Beacon requires at least one ally or mercenary within an Aura for its x90% damage condition."
+      },
+      {
+        "name": "Endure",
+        "order": 5,
+        "rotation": "unknown",
+        "attachment": "defensive damage board",
+        "glyph": {
+          "name": "Undaunted",
+          "kind": "paragon-glyph",
+          "confidence": "confirmed-public"
+        },
+        "glyphLevel": 15,
+        "glyphRadius": 4,
+        "selectedNodes": [
+          {
+            "name": "Endure",
+            "priority": "recommended"
+          }
+        ],
+        "notes": "Endure scales damage while Fortified; Defiance Aura and talisman sustain help maintain the condition."
+      }
+    ],
+    "notes": "Exact board rotations/pathing are not solved in this schema build; names and priorities come from local v_paragon_boards and v_paragon_glyphs."
+  },
+  "talisman": {
+    "seal": {
+      "name": "Horadric Seal of Honor",
+      "kind": "talisman-seal",
+      "confidence": "confirmed-public",
+      "notes": "Generic local seal option with armor and Unique Charm capacity; replace with a stronger Judicator-specific seal if local data adds one."
+    },
+    "charmSets": [
+      {
+        "name": "Heaven's Radiant Fire",
+        "kind": "talisman-set",
+        "confidence": "confirmed-public",
+        "notes": "Preferred Paladin set because it spreads Judgement and scales Judgement Day."
+      },
+      {
+        "name": "Survival",
+        "kind": "talisman-set",
+        "confidence": "confirmed-public",
+        "notes": "Fallback defensive set if Radiant Fire pieces are missing."
+      }
+    ],
+    "setBonuses": [
+      "Heaven's Radiant Fire 2-piece: Judgement spreading and Judgement Day damage ramp.",
+      "Heaven's Radiant Fire 3-piece: Damage reduction and healing while Judgement Day is active.",
+      "Heaven's Radiant Fire 5-piece: Higher Judgement Day stack ceiling."
+    ],
+    "uniqueCharmLimit": 2,
+    "notes": "Talisman exact charm rolls are not mandatory for the core build. Prioritize Judgement, cooldown, armor, all stats, and life families."
+  },
+  "runewords": [
+    {
+      "generator": {
+        "name": "Zan",
+        "kind": "rune",
+        "sourceKey": "v_rune_pairing_candidates.generator_rune=Zan",
+        "confidence": "confirmed-public"
+      },
+      "spender": {
+        "name": "Zec",
+        "kind": "rune",
+        "sourceKey": "v_rune_pairing_candidates.spender_rune=Zec",
+        "confidence": "confirmed-public"
+      },
+      "socketItem": "Chest Armor",
+      "role": "Ultimate cooldown loop",
+      "fitNotes": "Zan triggers when casting an Ultimate Skill; Zec spends Offering to reduce active Ultimate cooldown by 1 second.",
+      "notes": "Use one legal generator plus one legal spender in a two-socket item. If socket rules block this placement, move it to any legal two-socket non-conflicting item."
+    }
+  ],
+  "ratings": {
+    "provenPerformance": 10,
+    "theoreticalCeiling": 72,
+    "patchFit": 76,
+    "gearFeasibility": 62,
+    "reproducibility": 45,
+    "survivability": 68,
+    "originality": 94,
+    "exploitRisk": 18,
+    "confidence": 46,
+    "recommendation": 58,
+    "notes": "Ratings are Jeff prototype scores from local data only. Performance is low because no clear logs or leaderboard evidence are attached."
+  },
+  "evidence": [
+    {
+      "id": "EVD-FLAILMARY-001",
+      "type": "local-season-context",
+      "summary": "Local Seasons_Patches marks S14, Season of Death Awakening, Patch 3.1.0 Build #72592 as the current research frame.",
+      "sourceName": "data/seasons_patches.md",
+      "reliability": "high",
+      "confidence": "confirmed",
+      "observedDate": "2026-07-08"
+    },
+    {
+      "id": "EVD-FLAILMARY-002",
+      "type": "database-query",
+      "summary": "v_unique_items lists Sunbrand as a Paladin Unique Flail; v_unique_item_scalars records Heaven's Fury gains 3 additional rays and 70-90% increased damage.",
+      "sourceName": "data/db/diablo4_compendium.sqlite:v_unique_items,v_unique_item_scalars",
+      "sourceUrl": "https://diablo4.life/database/uniques/sunbrand",
+      "reliability": "medium",
+      "confidence": "confirmed-public",
+      "observedDate": "2026-07-08"
+    },
+    {
+      "id": "EVD-FLAILMARY-003",
+      "type": "database-query",
+      "summary": "v_skill_summary and v_skill_tree_nodes list Heaven's Fury as a Paladin Judicator Ultimate and expose Duration plus Walk With The Light selections.",
+      "sourceName": "data/db/diablo4_compendium.sqlite:v_skill_summary,v_skill_tree_nodes",
+      "reliability": "medium",
+      "confidence": "confirmed-public",
+      "observedDate": "2026-07-08"
+    },
+    {
+      "id": "EVD-FLAILMARY-004",
+      "type": "database-query",
+      "summary": "v_class_specializations lists Judicator Oath as Basic Skills applying Judgement and Judicator Core Skills detonating Judgement, with a local warning that public wording may lag Season 14 changes.",
+      "sourceName": "data/db/diablo4_compendium.sqlite:v_class_specializations",
+      "reliability": "medium",
+      "confidence": "likely",
+      "observedDate": "2026-07-08"
+    },
+    {
+      "id": "EVD-FLAILMARY-005",
+      "type": "database-query",
+      "summary": "v_aspects contains Aspect of Contemplation, Firm Decree, Holy Punishment, Channeling, Might, Shelter, Holy Cadence, and Apogeic Furor rows used by this guide.",
+      "sourceName": "data/db/diablo4_compendium.sqlite:v_aspects",
+      "sourceUrl": "https://diablo4.life/database/aspects",
+      "reliability": "medium",
+      "confidence": "confirmed-public",
+      "observedDate": "2026-07-08"
+    },
+    {
+      "id": "EVD-FLAILMARY-006",
+      "type": "database-query",
+      "summary": "v_paragon_boards and v_paragon_glyphs list Paladin Sentencing, Relentless, Beacon, Endure, Judicator, Law, Resplendence, Canny, and Undaunted support.",
+      "sourceName": "data/db/diablo4_compendium.sqlite:v_paragon_boards,v_paragon_glyphs",
+      "sourceUrl": "https://d4builds.gg/database/paragon-boards/",
+      "reliability": "medium",
+      "confidence": "confirmed-public",
+      "observedDate": "2026-07-08"
+    },
+    {
+      "id": "EVD-FLAILMARY-007",
+      "type": "database-query",
+      "summary": "v_temper_manuals and v_temper_affixes list Elemental Finesse: Day, Worldly Stability, Aura Innovation, Guardian Finesse, Judicator Finesse, and Natural Motion as legal support manuals.",
+      "sourceName": "data/db/diablo4_compendium.sqlite:v_temper_manuals,v_temper_affixes",
+      "reliability": "medium",
+      "confidence": "confirmed-public",
+      "observedDate": "2026-07-08"
+    },
+    {
+      "id": "EVD-FLAILMARY-008",
+      "type": "database-query",
+      "summary": "v_rune_pairing_candidates lists Zan plus Zec as an Ultimate-loop pairing candidate, and v_talisman_charm_sets lists Heaven's Radiant Fire as a Paladin Judgement-oriented charm set.",
+      "sourceName": "data/db/diablo4_compendium.sqlite:v_rune_pairing_candidates,v_talisman_charm_sets",
+      "reliability": "medium",
+      "confidence": "confirmed-public",
+      "observedDate": "2026-07-08"
+    }
+  ],
+  "legalityNotes": [
+    {
+      "ruleKey": "oath_choose_one",
+      "severity": "info",
+      "message": "Use Judicator as the only Paladin Oath for this build.",
+      "confidence": "confirmed-public",
+      "refs": [
+        {
+          "name": "Judicator",
+          "kind": "class-specialization",
+          "confidence": "confirmed-public"
+        }
+      ]
+    },
+    {
+      "ruleKey": "skill_ultimate_singleton",
+      "severity": "info",
+      "message": "Only Heaven's Fury is selected as an Ultimate skill.",
+      "confidence": "confirmed-public",
+      "refs": [
+        {
+          "name": "Heaven's Fury",
+          "kind": "skill",
+          "confidence": "confirmed-public"
+        }
+      ]
+    },
+    {
+      "ruleKey": "unique_identity_singleton",
+      "severity": "warning",
+      "message": "Do not treat Light's Rebuke as a simultaneous equip target; it is a variant flail, not part of the Sunbrand core.",
+      "confidence": "confirmed",
+      "refs": [
+        {
+          "name": "Sunbrand",
+          "kind": "unique",
+          "confidence": "confirmed-public"
+        },
+        {
+          "name": "Light's Rebuke",
+          "kind": "unique",
+          "confidence": "confirmed-public"
+        }
+      ]
+    },
+    {
+      "ruleKey": "runeword_pair_composition",
+      "severity": "info",
+      "message": "Zan/Zec is one generator rune plus one spender rune; do not reuse either rune in another pair.",
+      "confidence": "confirmed-public",
+      "refs": [
+        {
+          "name": "Zan",
+          "kind": "rune",
+          "confidence": "confirmed-public"
+        },
+        {
+          "name": "Zec",
+          "kind": "rune",
+          "confidence": "confirmed-public"
+        }
+      ]
+    },
+    {
+      "ruleKey": "planner_slot_model",
+      "severity": "info",
+      "message": "Flail is present in the local item slot table, but build-guide.schema.json does not expose Flail as a gear slot enum; Sunbrand is encoded as slot Weapon with extensions.dbSlot=Flail.",
+      "confidence": "confirmed"
+    }
+  ],
+  "notes": "Evidence was drawn only from local Compendium files and the local sqlite database per the Jeff skill. No online lookup was used. The build is deliberately a meme, but its mandatory parts are locally represented and schema-valid.",
+  "extensions": {
+    "jeffSummary": {
+      "class": "Paladin",
+      "coreSkillEngine": "Sunbrand Heaven's Fury plus Judicator cooldown loop",
+      "requiredItems": [
+        "Sunbrand"
+      ],
+      "localPatchEvidenceChecked": [
+        "data/seasons_patches.md",
+        "data/db/diablo4_compendium.sqlite",
+        "data/db/README.md",
+        "docs/AGENTS.md",
+        "data/readme.md"
+      ],
+      "confidence": "Likely prototype with hypothesis-grade ray stacking",
+      "mainRisks": [
+        "Ray stacking needs client verification",
+        "Channeling aspect may not apply",
+        "Ultimate cooldown may be too slow for push content"
+      ]
+    }
+  }
+}

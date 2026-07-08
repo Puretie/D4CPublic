@@ -1,0 +1,588 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "demo-paladin-judgement-lantern",
+  "name": "Demo Judgement Lantern Paladin",
+  "class": "Paladin",
+  "season": "S14",
+  "patch": "3.1.0",
+  "archetype": "Judicator / Persistent Beam Demo",
+  "buildType": "Schema Demonstration Blueprint",
+  "status": "blueprint",
+  "contentTargets": ["Tower", "Pit", "Bossing", "Schema Demo"],
+  "updated": "2026-07-08",
+  "author": "Compendium Demo",
+  "mechanics": {
+    "coreLoop": "Apply Judgement, maintain a persistent beam window, and use a high-event Paladin spender to detonate the marked target while defenses stay active.",
+    "engineTags": ["judgement", "persistent field", "cooldown loop", "defensive conversion"],
+    "coreInteractions": [
+      {
+        "name": "Judgement detonation window",
+        "summary": "Judicator state turns Judgement into the central payoff event for the guide.",
+        "type": "scalar convergence",
+        "scalingModel": "High-event delivery into one amplified damage packet.",
+        "confidence": "hypothesis",
+        "priority": "required",
+        "refs": [
+          {
+            "name": "Judicator Oath",
+            "kind": "class-specialization",
+            "sourceKey": "data/class_specializations.md",
+            "confidence": "likely"
+          },
+          {
+            "name": "Seal of the Second Trumpet",
+            "kind": "unique",
+            "sourceKey": "CMP-S14-NEW-SEAL-0001",
+            "confidence": "confirmed-public"
+          }
+        ]
+      },
+      {
+        "name": "Beam uptime engine",
+        "summary": "Heaven's Fury acts as a persistent event source while the player refreshes defenses and keeps Judgement active.",
+        "type": "persistent event battery",
+        "scalingModel": "Cooldown uptime plus tick density.",
+        "confidence": "hypothesis",
+        "priority": "recommended",
+        "refs": [
+          {
+            "name": "Heaven's Fury",
+            "kind": "skill",
+            "sourceKey": "CMP-S14-NEW-HEAVENFURY-0001",
+            "confidence": "hypothesis"
+          }
+        ]
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "Beam recast cadence",
+        "target": "Heaven's Fury available often enough that the guide can treat it as part of the normal loop.",
+        "condition": "Cooldown reduction and ultimate support bring practical downtime below one rotation cycle.",
+        "value": "One recast every Judgement window",
+        "priority": "recommended",
+        "confidence": "unknown",
+        "refs": [
+          {
+            "name": "Cooldown Reduction",
+            "kind": "gear-affix",
+            "confidence": "confirmed-public"
+          }
+        ]
+      },
+      {
+        "name": "Defensive floor",
+        "target": "Enough Fortify, armor, or damage reduction to stand in beam range.",
+        "priority": "required",
+        "confidence": "likely"
+      }
+    ],
+    "failureModes": [
+      {
+        "name": "Judgement cap prevents event scaling",
+        "impact": "If detonations are capped or throttled, the beam becomes support instead of a primary engine.",
+        "severity": "warning",
+        "confidence": "unknown"
+      },
+      {
+        "name": "Cooldown downtime",
+        "impact": "The build falls back into ordinary spender gameplay between beam windows.",
+        "severity": "warning",
+        "confidence": "likely"
+      }
+    ],
+    "notes": "This guide is intentionally fictional demo data that exercises optional schema branches.",
+    "extensions": {
+      "demoTag": "full-object"
+    }
+  },
+  "guide": {
+    "overview": "A full demo build guide object for testing schema validation, clipboard loading, and planner rendering. It is not intended to be a real recommendation.",
+    "rotation": {
+      "summary": "Open with Judgement setup, create the beam window, then spend into the marked target while defensive uptime stays active.",
+      "sequence": [
+        "Move into position with Advance.",
+        "Apply or refresh Judgement through the chosen Judicator setup.",
+        "Cast Heaven's Fury to create the beam window.",
+        "Spend with Zeal until the window ends.",
+        "Refresh Defiance Aura before pushing into the next pack."
+      ],
+      "opener": [
+        "Advance into range.",
+        "Defiance Aura before heavy incoming damage.",
+        "Heaven's Fury on the densest target cluster."
+      ],
+      "bossing": [
+        "Hold mobility for mechanics.",
+        "Keep Judgement on the boss before beam recasts."
+      ],
+      "speedFarm": [
+        "Skip isolated targets.",
+        "Use the beam only on elite packs or objective rooms."
+      ],
+      "notes": "Rotation text is display data; exact cooldown math belongs in later build-analysis scripts."
+    },
+    "strengths": [
+      "Exercises every major schema family.",
+      "Shows how a guide can separate gameplay steps from machine-checkable state.",
+      "Good smoke-test payload for AI-generated build JSON."
+    ],
+    "weaknesses": [
+      "Fictional mechanics and component choices.",
+      "Not benchmarked.",
+      "No exact paragon pathing."
+    ],
+    "variants": [
+      {
+        "name": "Safer Fortify Variant",
+        "summary": "Moves optional offensive affixes into defensive sustain until the loop is stable.",
+        "tradeoffs": ["Lower burst", "Easier early testing"],
+        "refs": [
+          {
+            "name": "Maximum Life",
+            "kind": "gear-affix",
+            "confidence": "confirmed-public"
+          }
+        ]
+      },
+      {
+        "name": "Beam Uptime Variant",
+        "summary": "Chases cooldown and resource support at the cost of raw damage affixes.",
+        "tradeoffs": ["More consistent windows", "Higher gearing pressure"]
+      }
+    ],
+    "steps": [
+      {
+        "stage": "Leveling",
+        "range": "1-35",
+        "title": "Build the spender shell",
+        "goals": [
+          "Unlock the main spender and one defensive button.",
+          "Add mobility before chasing damage details."
+        ],
+        "actions": [
+          "Prioritize Zeal ranks and one aura.",
+          "Keep resource costs manageable until gear support exists."
+        ],
+        "refs": [
+          {
+            "name": "Zeal",
+            "kind": "skill",
+            "confidence": "confirmed-public"
+          }
+        ]
+      },
+      {
+        "stage": "Transition",
+        "range": "36-60",
+        "title": "Add the Judgement engine",
+        "goals": [
+          "Select Judicator support.",
+          "Start testing whether high-event skills improve the payoff."
+        ],
+        "actions": [
+          "Equip any available Judgement support pieces.",
+          "Record whether damage feels gated by cooldown, resource, or survival."
+        ]
+      },
+      {
+        "stage": "Early Endgame",
+        "range": "60-100",
+        "title": "Convert into a guide-state build",
+        "goals": [
+          "Lock the skill bar.",
+          "Record gear slot priorities.",
+          "Add paragon board order once known."
+        ],
+        "actions": [
+          "Validate the JSON after each AI-generated revision.",
+          "Keep notes on unknown mechanics instead of pretending they are confirmed."
+        ]
+      }
+    ],
+    "extensions": {
+      "displayHint": "demo"
+    }
+  },
+  "skills": {
+    "loadout": [
+      {
+        "name": "Advance",
+        "role": "mobility-generator",
+        "priority": "recommended",
+        "rank": 1,
+        "targetRank": 1,
+        "button": "1",
+        "tags": ["Basic", "Zealot", "Mobility"],
+        "notes": "Demo mobility and setup skill."
+      },
+      {
+        "name": "Zeal",
+        "role": "primary-spender",
+        "priority": "required",
+        "rank": 5,
+        "targetRank": 15,
+        "button": "2",
+        "tags": ["Core", "Zealot", "Physical"]
+      },
+      {
+        "name": "Heaven's Fury",
+        "role": "persistent-event-window",
+        "priority": "recommended",
+        "rank": 1,
+        "targetRank": 5,
+        "button": "3",
+        "tags": ["Cooldown", "Holy"]
+      },
+      {
+        "name": "Defiance Aura",
+        "role": "defense",
+        "priority": "required",
+        "rank": 1,
+        "button": "4",
+        "tags": ["Aura"]
+      },
+      {
+        "name": "Judgement",
+        "role": "payoff-state",
+        "priority": "required",
+        "rank": 1,
+        "button": "5",
+        "tags": ["Judicator"]
+      },
+      {
+        "name": "Zenith",
+        "role": "optional-burst",
+        "priority": "optional",
+        "rank": 1,
+        "button": "6",
+        "tags": ["Ultimate", "Zealot"]
+      }
+    ],
+    "specializations": [
+      {
+        "name": "Judicator Oath",
+        "kind": "class-specialization",
+        "sourceKey": "data/class_specializations.md",
+        "confidence": "likely"
+      }
+    ],
+    "treeSelections": [
+      {
+        "skill": "Zeal",
+        "name": "Damage Bonus",
+        "group": "passives_2",
+        "rank": 1,
+        "priority": "recommended",
+        "confidence": "unknown"
+      },
+      {
+        "skill": "Heaven's Fury",
+        "name": "Cooldown support option",
+        "priority": "recommended",
+        "confidence": "hypothesis"
+      }
+    ],
+    "rankTargets": [
+      {
+        "skill": "Zeal",
+        "targetRank": 15,
+        "reason": "Demo guide treats Zeal as the repeatable spender."
+      },
+      {
+        "skill": "Heaven's Fury",
+        "targetRank": 5,
+        "reason": "Ranks demonstrate optional target math fields.",
+        "priority": "optional"
+      }
+    ],
+    "notes": "Skill data is intentionally illustrative.",
+    "extensions": {}
+  },
+  "gear": {
+    "statPriorities": [
+      {
+        "stat": "Cooldown Reduction",
+        "priority": "required",
+        "reason": "Supports the demo beam recast loop.",
+        "target": "As much as possible before sacrificing survival."
+      },
+      {
+        "stat": "Strength",
+        "priority": "recommended",
+        "reason": "Primary stat placeholder."
+      },
+      {
+        "stat": "Maximum Life",
+        "priority": "recommended",
+        "reason": "Keeps the build alive in beam range."
+      },
+      {
+        "stat": "Holy Damage",
+        "priority": "optional",
+        "reason": "Demo damage-type stat for Paladin."
+      }
+    ],
+    "slots": [
+      {
+        "slot": "Helm",
+        "priority": "recommended",
+        "item": {
+          "name": "Legendary Helm",
+          "kind": "item",
+          "confidence": "unknown"
+        },
+        "affixes": [
+          {
+            "name": "Cooldown Reduction",
+            "priority": "required",
+            "target": "High roll"
+          },
+          {
+            "name": "Maximum Life",
+            "priority": "recommended"
+          }
+        ],
+        "tempers": [
+          {
+            "manual": {
+              "name": "Defensive Manual",
+              "kind": "temper"
+            },
+            "affix": "Total Armor",
+            "priority": "recommended"
+          }
+        ],
+        "masterwork": "Prefer cooldown or life crits."
+      },
+      {
+        "slot": "Amulet",
+        "priority": "required",
+        "item": {
+          "name": "Open Amulet",
+          "kind": "item",
+          "confidence": "unknown"
+        },
+        "aspect": {
+          "name": "Cooldown loop aspect",
+          "kind": "aspect",
+          "confidence": "hypothesis"
+        },
+        "affixes": [
+          {
+            "name": "Cooldown Reduction",
+            "priority": "required"
+          },
+          {
+            "name": "Aura Skills",
+            "priority": "optional"
+          }
+        ],
+        "sockets": ["Royal Diamond"]
+      },
+      {
+        "slot": "Ring 1",
+        "priority": "required",
+        "item": {
+          "name": "Seal of the Second Trumpet",
+          "kind": "unique",
+          "sourceKey": "CMP-S14-NEW-SEAL-0001",
+          "confidence": "confirmed-public"
+        },
+        "affixes": [
+          {
+            "name": "Critical Strike Chance",
+            "priority": "recommended"
+          }
+        ],
+        "notes": "Unique identity constraints should be checked by future validator layers."
+      },
+      {
+        "slot": "Weapon",
+        "priority": "required",
+        "aspect": {
+          "name": "Judgement delivery aspect",
+          "kind": "aspect",
+          "confidence": "hypothesis"
+        },
+        "affixes": [
+          {
+            "name": "Strength",
+            "priority": "recommended"
+          },
+          {
+            "name": "Holy Damage",
+            "priority": "optional",
+            "confidence": "unknown"
+          }
+        ],
+        "enchant": {
+          "name": "Cooldown Reduction",
+          "priority": "recommended",
+          "notes": "Only if the real source permits it."
+        }
+      },
+      {
+        "slot": "Boots",
+        "priority": "recommended",
+        "affixes": [
+          {
+            "name": "Movement Speed",
+            "priority": "recommended"
+          }
+        ],
+        "notes": "Movement helps keep beam placement practical."
+      }
+    ],
+    "notes": "Gear choices are fake but structurally representative.",
+    "extensions": {}
+  },
+  "paragon": {
+    "boards": [
+      {
+        "name": "Starting Board",
+        "order": 1,
+        "rotation": "default",
+        "attachment": "starter",
+        "glyph": {
+          "name": "Territorial Demo Glyph",
+          "kind": "paragon-glyph",
+          "confidence": "unknown"
+        },
+        "glyphLevel": 15,
+        "glyphRadius": 4,
+        "selectedNodes": [
+          {
+            "name": "Path to glyph socket",
+            "priority": "required",
+            "nodeId": "demo-start-path"
+          },
+          {
+            "name": "Nearby rare defensive node",
+            "priority": "recommended"
+          }
+        ]
+      },
+      {
+        "name": "Judgement Demo Board",
+        "order": 2,
+        "rotation": "clockwise",
+        "attachment": "north gate",
+        "glyph": {
+          "name": "Holy Demo Glyph",
+          "kind": "paragon-glyph",
+          "confidence": "unknown"
+        },
+        "glyphLevel": 1,
+        "glyphRadius": 3,
+        "selectedNodes": [
+          {
+            "name": "Legendary node placeholder",
+            "priority": "optional"
+          }
+        ],
+        "notes": "Board name is invented for schema exercise."
+      }
+    ],
+    "notes": "Optional full pathing is omitted.",
+    "extensions": {}
+  },
+  "talisman": {
+    "seal": {
+      "name": "Horadric Seal of Honor",
+      "kind": "talisman-seal",
+      "confidence": "confirmed-public"
+    },
+    "charms": [
+      {
+        "name": "Cathan's Righteous Will Demo Charm",
+        "kind": "talisman-charm",
+        "confidence": "unknown"
+      },
+      {
+        "name": "Open Utility Charm",
+        "kind": "talisman-charm",
+        "confidence": "unknown"
+      }
+    ],
+    "charmSets": [
+      {
+        "name": "Light's Epiphany",
+        "kind": "talisman-set",
+        "confidence": "confirmed-public"
+      }
+    ],
+    "setBonuses": ["2-piece demo bonus", "5-piece demo bonus"],
+    "uniqueCharmLimit": 2,
+    "notes": "Talisman objects are optional but build-critical for Season 14 planning.",
+    "extensions": {}
+  },
+  "runewords": [
+    {
+      "generator": {
+        "name": "Demo Ritual Rune",
+        "kind": "rune",
+        "confidence": "unknown"
+      },
+      "spender": {
+        "name": "Demo Invocation Rune",
+        "kind": "rune",
+        "confidence": "unknown"
+      },
+      "socketItem": "Chest Armor",
+      "role": "defensive utility",
+      "fitNotes": "Generator should match actions already present in the rotation.",
+      "notes": "One-generator-plus-one-spender composition is represented here."
+    }
+  ],
+  "ratings": {
+    "provenPerformance": 5,
+    "theoreticalCeiling": 60,
+    "patchFit": 80,
+    "gearFeasibility": 55,
+    "reproducibility": 40,
+    "survivability": 70,
+    "originality": 90,
+    "exploitRisk": 10,
+    "confidence": 25,
+    "recommendation": 45,
+    "notes": "Ratings are demo values on the repo's 0-100 scale."
+  },
+  "evidence": [
+    {
+      "id": "EVD-DEMO-0001",
+      "type": "demo",
+      "summary": "Synthetic payload for testing schema completeness and planner loading.",
+      "sourceName": "Local demo file",
+      "sourceUrl": "./demo-build-guide.json",
+      "reliability": "low",
+      "confidence": "unknown",
+      "observedDate": "2026-07-08"
+    },
+    {
+      "id": "EVD-DEMO-0002",
+      "type": "compendium-reference",
+      "summary": "Represents how future generated builds can point back to source keys.",
+      "reliability": "medium",
+      "confidence": "hypothesis"
+    }
+  ],
+  "legalityNotes": [
+    {
+      "ruleKey": "skill_ultimate_singleton",
+      "severity": "info",
+      "message": "Do not allocate points to multiple Ultimate skills in a real Paladin build.",
+      "confidence": "confirmed-public"
+    },
+    {
+      "ruleKey": "unique_identity_singleton",
+      "severity": "warning",
+      "message": "Future scripts should reject duplicate Unique powers across gear and Unique Charms.",
+      "confidence": "confirmed"
+    }
+  ],
+  "notes": "This demo intentionally fills optional schema families without claiming to be a real build.",
+  "extensions": {
+    "demoPurpose": "clipboard-loader-and-schema-smoke-test"
+  }
+}

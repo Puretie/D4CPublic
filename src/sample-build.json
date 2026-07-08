@@ -1,0 +1,398 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "sample-shadow-barrage-rogue",
+  "name": "Sample Shadow Barrage Rogue",
+  "class": "Rogue",
+  "season": "S14",
+  "patch": "3.1.0",
+  "archetype": "Ranged Shadow / Combo Points",
+  "buildType": "Leveling Blueprint",
+  "status": "draft",
+  "contentTargets": ["Leveling", "Early Endgame", "Schema Demo"],
+  "updated": "2026-07-08",
+  "mechanics": {
+    "coreLoop": "Build Combo Points with a Basic skill, spend them through Barrage, and use Shadow Imbuement to turn pack clears into chain damage.",
+    "engineTags": ["resource loop", "combo points", "imbuement", "projectile"],
+    "coreInteractions": [
+      {
+        "name": "Combo Point Barrage cadence",
+        "summary": "Barrage is treated as the main spender, with Combo Points providing the repeatable damage state.",
+        "confidence": "hypothesis",
+        "priority": "required",
+        "refs": [
+          {
+            "name": "Combo Points",
+            "kind": "class-specialization",
+            "confidence": "confirmed-public"
+          },
+          {
+            "name": "Barrage",
+            "kind": "skill",
+            "confidence": "confirmed-public"
+          }
+        ]
+      },
+      {
+        "name": "Shadow Imbuement pack clear",
+        "summary": "Shadow Imbuement gives the build an area clear layer while the rest of the shell supports projectile uptime.",
+        "confidence": "likely",
+        "priority": "recommended",
+        "refs": [
+          {
+            "name": "Shadow Imbuement",
+            "kind": "skill",
+            "confidence": "confirmed-public"
+          }
+        ]
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "Stable resource cycle",
+        "target": "Enough Energy support to cast Barrage after setup without long generator downtime.",
+        "priority": "required",
+        "confidence": "unknown"
+      }
+    ],
+    "failureModes": [
+      {
+        "name": "Resource starvation",
+        "impact": "Barrage uptime falls apart and the build becomes a weak Basic-skill shell.",
+        "severity": "warning",
+        "confidence": "likely"
+      }
+    ]
+  },
+  "guide": {
+    "overview": "A compact guide shape for the planner UI: JSON in, readable progression out, with enough structure for later validation scripts.",
+    "rotation": {
+      "summary": "Set up Combo Points, fire Barrage into dense targets, and refresh Shadow Imbuement for pack clears.",
+      "sequence": [
+        "Build Combo Points with Puncture or another Basic skill.",
+        "Cast Shadow Imbuement before a pack or elite wave.",
+        "Spend Combo Points with Barrage.",
+        "Use Dash or Shadow Step to keep firing lanes clean."
+      ]
+    },
+    "strengths": ["Clear upgrade path", "Simple resource loop", "Works as schema documentation"],
+    "weaknesses": ["Not a proven endgame build", "Exact current-client values are placeholders"],
+    "steps": [
+      {
+        "stage": "Levels 1-15",
+        "range": "Starter",
+        "title": "Open the core loop",
+        "goals": [
+          "Unlock a Basic skill and Barrage before adding utility.",
+          "Add Dash once movement starts saving more time than extra damage."
+        ],
+        "actions": [
+          "Prioritize Barrage ranks over side utility.",
+          "Keep early skill choices narrow so the first respec pass stays painless."
+        ],
+        "notes": "This is guide structure, not final Rogue advice."
+      },
+      {
+        "stage": "Levels 16-35",
+        "range": "Campaign",
+        "title": "Layer in shadow clears",
+        "goals": [
+          "Slot Shadow Imbuement for packs and dungeon rooms.",
+          "Start tracking legendary effects that improve the main spender."
+        ],
+        "actions": [
+          "Use Shadow Imbuement before dense pulls.",
+          "Pick up Shadow Step when control effects start slowing the run."
+        ]
+      },
+      {
+        "stage": "Levels 36-50",
+        "range": "Capstone",
+        "title": "Tighten survival and burst",
+        "goals": [
+          "Bring defensive uptime online before pushing harder content.",
+          "Move filler points into passives once the skill bar feels locked."
+        ],
+        "actions": [
+          "Prefer affixes that keep the same rotation easier to repeat.",
+          "Add defensive tools before testing higher incoming damage."
+        ]
+      },
+      {
+        "stage": "Paragon",
+        "range": "Endgame",
+        "title": "Convert the guide into targets",
+        "goals": [
+          "Turn build JSON into board, glyph, and gear sections.",
+          "Separate required pieces from nice-to-have chase items."
+        ],
+        "actions": [
+          "Record the first board order and socketed glyphs when the real build exists.",
+          "Keep each upgrade step tied to a visible reason."
+        ],
+        "refs": [
+          {
+            "name": "Paragon board snapshot strategy",
+            "kind": "source",
+            "sourceKey": "data/paragon_boards.md"
+          }
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "loadout": [
+      {
+        "name": "Puncture",
+        "role": "generator",
+        "priority": "required",
+        "tags": ["Basic"],
+        "notes": "Placeholder Basic skill for Combo Point setup."
+      },
+      {
+        "name": "Barrage",
+        "role": "primary-damage",
+        "priority": "required",
+        "tags": ["Core", "Marksman"],
+        "targetRank": 5
+      },
+      {
+        "name": "Shadow Imbuement",
+        "role": "clear-scaling",
+        "priority": "recommended",
+        "tags": ["Imbuement", "Shadow"]
+      },
+      {
+        "name": "Dash",
+        "role": "mobility",
+        "priority": "recommended",
+        "tags": ["Agility"]
+      },
+      {
+        "name": "Shadow Step",
+        "role": "mobility-breakout",
+        "priority": "optional",
+        "tags": ["Agility"]
+      },
+      {
+        "name": "Dark Shroud",
+        "role": "defense",
+        "priority": "recommended",
+        "tags": ["Subterfuge"]
+      }
+    ],
+    "specializations": [
+      {
+        "name": "Combo Points",
+        "kind": "class-specialization",
+        "confidence": "confirmed-public"
+      }
+    ],
+    "treeSelections": [
+      {
+        "skill": "Barrage",
+        "name": "Enhanced Barrage",
+        "priority": "recommended",
+        "confidence": "unknown"
+      }
+    ],
+    "rankTargets": [
+      {
+        "skill": "Barrage",
+        "targetRank": 5,
+        "reason": "Main spender ranks should move before comfort utility."
+      }
+    ]
+  },
+  "gear": {
+    "statPriorities": [
+      {
+        "stat": "Critical Strike Chance",
+        "priority": "recommended",
+        "reason": "Supports burst windows and common Rogue scaling."
+      },
+      {
+        "stat": "Dexterity",
+        "priority": "recommended",
+        "reason": "Primary stat placeholder for Rogue damage scaling."
+      },
+      {
+        "stat": "Cooldown Reduction",
+        "priority": "optional",
+        "reason": "Improves Imbuement and utility cadence."
+      },
+      {
+        "stat": "Maximum Life",
+        "priority": "recommended",
+        "reason": "Keeps the build stable while the real defensive shell is unknown."
+      }
+    ],
+    "slots": [
+      {
+        "slot": "Weapon",
+        "priority": "required",
+        "item": {
+          "name": "Open legendary weapon",
+          "kind": "item",
+          "confidence": "unknown"
+        },
+        "aspect": {
+          "name": "Main spender support aspect",
+          "kind": "aspect",
+          "confidence": "unknown"
+        },
+        "affixes": [
+          {
+            "name": "Dexterity",
+            "priority": "recommended"
+          },
+          {
+            "name": "Critical Strike Damage",
+            "priority": "optional"
+          }
+        ],
+        "tempers": [
+          {
+            "manual": {
+              "name": "Offensive temper manual",
+              "kind": "temper"
+            },
+            "affix": "Core Skill Damage",
+            "priority": "recommended"
+          }
+        ]
+      },
+      {
+        "slot": "Helm",
+        "priority": "recommended",
+        "affixes": [
+          {
+            "name": "Cooldown Reduction",
+            "priority": "recommended"
+          },
+          {
+            "name": "Maximum Life",
+            "priority": "recommended"
+          }
+        ]
+      },
+      {
+        "slot": "Ring",
+        "priority": "recommended",
+        "aspect": {
+          "name": "Resource support aspect",
+          "kind": "aspect",
+          "confidence": "unknown"
+        },
+        "affixes": [
+          {
+            "name": "Critical Strike Chance",
+            "priority": "recommended"
+          },
+          {
+            "name": "Vulnerable Damage",
+            "priority": "optional"
+          }
+        ]
+      },
+      {
+        "slot": "Boots",
+        "priority": "recommended",
+        "affixes": [
+          {
+            "name": "Movement Speed",
+            "priority": "recommended"
+          }
+        ],
+        "notes": "Movement is part of the guide loop, not just comfort."
+      }
+    ]
+  },
+  "paragon": {
+    "boards": [
+      {
+        "name": "Starting Board",
+        "order": 1,
+        "rotation": "default",
+        "glyph": {
+          "name": "TBD Rogue glyph",
+          "kind": "paragon-glyph",
+          "confidence": "unknown"
+        },
+        "glyphLevel": 1,
+        "glyphRadius": 3,
+        "selectedNodes": [
+          {
+            "name": "Starter pathing nodes",
+            "priority": "optional"
+          }
+        ]
+      }
+    ],
+    "notes": "Exact paragon pathing is optional in schema v1."
+  },
+  "talisman": {
+    "seal": {
+      "name": "Starter Seal",
+      "kind": "talisman-seal",
+      "confidence": "unknown"
+    },
+    "charms": [
+      {
+        "name": "Open charm slot",
+        "kind": "talisman-charm",
+        "confidence": "unknown"
+      }
+    ],
+    "uniqueCharmLimit": 1,
+    "notes": "Use real seal/charm data once the build leaves sample status."
+  },
+  "runewords": [
+    {
+      "generator": {
+        "name": "Natural trigger rune",
+        "kind": "rune",
+        "confidence": "unknown"
+      },
+      "spender": {
+        "name": "Useful payoff rune",
+        "kind": "rune",
+        "confidence": "unknown"
+      },
+      "socketItem": "Two-socket gear item",
+      "role": "utility",
+      "fitNotes": "Pick a generator that matches what the build already does."
+    }
+  ],
+  "ratings": {
+    "provenPerformance": 10,
+    "theoreticalCeiling": 40,
+    "patchFit": 50,
+    "gearFeasibility": 80,
+    "reproducibility": 70,
+    "survivability": 45,
+    "originality": 20,
+    "exploitRisk": 0,
+    "confidence": 20,
+    "recommendation": 35
+  },
+  "evidence": [
+    {
+      "id": "EVD-SAMPLE-0001",
+      "type": "schema-sample",
+      "summary": "Hand-authored starter record used to exercise the build guide schema.",
+      "reliability": "low",
+      "confidence": "unknown",
+      "observedDate": "2026-07-08"
+    }
+  ],
+  "legalityNotes": [
+    {
+      "ruleKey": "unique_identity_singleton",
+      "severity": "info",
+      "message": "Future validators should reject duplicate Unique identities across equipment and Unique Charms.",
+      "confidence": "confirmed"
+    }
+  ],
+  "notes": "Sample data is intentionally generic; the schema is the useful artifact.",
+  "extensions": {}
+}

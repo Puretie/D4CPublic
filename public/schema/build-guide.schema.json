@@ -1,0 +1,1259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/schema/build-guide.schema.json",
+  "title": "Diablo IV Build Guide",
+  "description": "Guide+State schema for static Diablo IV build guide JSON used by the compendium planner.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "class",
+    "season",
+    "patch",
+    "archetype",
+    "buildType",
+    "status",
+    "contentTargets",
+    "mechanics",
+    "guide",
+    "skills",
+    "gear"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^1\\.\\d+\\.\\d+$",
+      "description": "Semantic schema version for this build-guide document."
+    },
+    "id": {
+      "$ref": "#/$defs/nonEmptyString",
+      "description": "Stable build guide identifier. Prefer a slug or compendium build id."
+    },
+    "name": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "class": {
+      "$ref": "#/$defs/className"
+    },
+    "season": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "patch": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "archetype": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "buildType": {
+      "$ref": "#/$defs/nonEmptyString",
+      "description": "Human-facing type such as Original Research Candidate, Leveling Blueprint, Speed Farm, or Endgame Push."
+    },
+    "status": {
+      "$ref": "#/$defs/status"
+    },
+    "contentTargets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/nonEmptyString"
+      }
+    },
+    "updated": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "author": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "mechanics": {
+      "$ref": "#/$defs/mechanics"
+    },
+    "guide": {
+      "$ref": "#/$defs/guide"
+    },
+    "skills": {
+      "$ref": "#/$defs/skills"
+    },
+    "gear": {
+      "$ref": "#/$defs/gear"
+    },
+    "paragon": {
+      "$ref": "#/$defs/paragon"
+    },
+    "talisman": {
+      "$ref": "#/$defs/talisman"
+    },
+    "runewords": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/runewordPair"
+      }
+    },
+    "ratings": {
+      "$ref": "#/$defs/ratings"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidenceRecord"
+      }
+    },
+    "legalityNotes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/legalityNote"
+      }
+    },
+    "notes": {
+      "type": "string"
+    },
+    "extensions": {
+      "$ref": "#/$defs/extensions"
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "className": {
+      "type": "string",
+      "enum": [
+        "Barbarian",
+        "Druid",
+        "Necromancer",
+        "Paladin",
+        "Rogue",
+        "Sorcerer",
+        "Spiritborn",
+        "Warlock"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "confirmed-public",
+        "likely",
+        "hypothesis",
+        "conflict",
+        "unknown",
+        "disproven"
+      ]
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "required",
+        "recommended",
+        "optional",
+        "avoid"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "blueprint",
+        "testing",
+        "proven",
+        "deprecated"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "error",
+        "hard-reject"
+      ]
+    },
+    "score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "componentKind": {
+      "type": "string",
+      "enum": [
+        "skill",
+        "skill-node",
+        "class-specialization",
+        "aspect",
+        "unique",
+        "mythic-unique",
+        "item",
+        "gear-affix",
+        "temper",
+        "paragon-board",
+        "paragon-node",
+        "paragon-glyph",
+        "talisman-seal",
+        "talisman-charm",
+        "talisman-set",
+        "rune",
+        "runeword",
+        "interaction",
+        "evidence",
+        "source",
+        "other"
+      ]
+    },
+    "componentRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "kind": {
+          "$ref": "#/$defs/componentKind"
+        },
+        "dbId": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "#/$defs/nonEmptyString"
+            }
+          ]
+        },
+        "sourceKey": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "sourceUrl": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "mechanics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coreLoop",
+        "coreInteractions"
+      ],
+      "properties": {
+        "coreLoop": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "coreInteractions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/coreInteraction"
+          }
+        },
+        "breakpoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/breakpoint"
+          }
+        },
+        "failureModes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/failureMode"
+          }
+        },
+        "engineTags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "coreInteraction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "summary",
+        "confidence",
+        "priority"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "type": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "scalingModel": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "priority": {
+          "$ref": "#/$defs/priority"
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/componentRef"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "breakpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "target",
+        "priority",
+        "confidence"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "target": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "condition": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/$defs/nonEmptyString"
+            }
+          ]
+        },
+        "unit": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "why": {
+          "type": "string"
+        },
+        "priority": {
+          "$ref": "#/$defs/priority"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/componentRef"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "failureMode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "impact",
+        "severity",
+        "confidence"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "impact": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "guide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "overview",
+        "rotation",
+        "steps"
+      ],
+      "properties": {
+        "overview": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "rotation": {
+          "$ref": "#/$defs/rotation"
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/guideStep"
+          }
+        },
+        "strengths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "weaknesses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/variant"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "rotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "summary",
+        "sequence"
+      ],
+      "properties": {
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "sequence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "opener": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "bossing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "speedFarm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "guideStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "range",
+        "title",
+        "goals",
+        "actions"
+      ],
+      "properties": {
+        "stage": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "range": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "goals": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/componentRef"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "variant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "summary"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "tradeoffs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/componentRef"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "skills": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "loadout"
+      ],
+      "properties": {
+        "loadout": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/skillLoadoutItem"
+          }
+        },
+        "specializations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/componentRef"
+          }
+        },
+        "treeSelections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/treeSelection"
+          }
+        },
+        "rankTargets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rankTarget"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "skillLoadoutItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "role",
+        "priority"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "role": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "priority": {
+          "$ref": "#/$defs/priority"
+        },
+        "rank": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "targetRank": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "button": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/componentRef"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "treeSelection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "skill",
+        "name",
+        "priority",
+        "confidence"
+      ],
+      "properties": {
+        "skill": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "group": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "rank": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "priority": {
+          "$ref": "#/$defs/priority"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/componentRef"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "rankTarget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "skill",
+        "targetRank",
+        "reason"
+      ],
+      "properties": {
+        "skill": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "targetRank": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reason": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "priority": {
+          "$ref": "#/$defs/priority"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "gear": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slots",
+        "statPriorities"
+      ],
+      "properties": {
+        "slots": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/gearSlot"
+          }
+        },
+        "statPriorities": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/statPriority"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "slotName": {
+      "type": "string",
+      "enum": [
+        "Helm",
+        "Chest Armor",
+        "Gloves",
+        "Pants",
+        "Boots",
+        "Amulet",
+        "Ring",
+        "Ring 1",
+        "Ring 2",
+        "Weapon",
+        "Main Hand",
+        "Offhand",
+        "Off-Hand",
+        "Shield",
+        "Two-Handed Weapon",
+        "Two-Handed Bludgeoning",
+        "Two-Handed Ranged",
+        "Two-Handed Slashing",
+        "Talisman Seal",
+        "Talisman Charm",
+        "Other"
+      ]
+    },
+    "gearSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slot",
+        "priority"
+      ],
+      "properties": {
+        "slot": {
+          "$ref": "#/$defs/slotName"
+        },
+        "priority": {
+          "$ref": "#/$defs/priority"
+        },
+        "item": {
+          "$ref": "#/$defs/componentRef"
+        },
+        "aspect": {
+          "$ref": "#/$defs/componentRef"
+        },
+        "affixes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/affixPlan"
+          }
+        },
+        "tempers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/temperSelection"
+          }
+        },
+        "enchant": {
+          "$ref": "#/$defs/affixPlan"
+        },
+        "masterwork": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "sockets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/componentRef"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "affixPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "priority"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "priority": {
+          "$ref": "#/$defs/priority"
+        },
+        "target": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "roll": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/componentRef"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "temperSelection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manual",
+        "affix",
+        "priority"
+      ],
+      "properties": {
+        "manual": {
+          "$ref": "#/$defs/componentRef"
+        },
+        "affix": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "priority": {
+          "$ref": "#/$defs/priority"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "statPriority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stat",
+        "priority"
+      ],
+      "properties": {
+        "stat": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "priority": {
+          "$ref": "#/$defs/priority"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "target": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "paragon": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "boards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/paragonBoard"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "paragonBoard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "order"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "rotation": {
+          "type": "string",
+          "enum": [
+            "default",
+            "clockwise",
+            "counterclockwise",
+            "half-turn",
+            "unknown"
+          ]
+        },
+        "attachment": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "glyph": {
+          "$ref": "#/$defs/componentRef"
+        },
+        "glyphLevel": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "glyphRadius": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "selectedNodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nodeSelection"
+          }
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/componentRef"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "nodeSelection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "priority"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "priority": {
+          "$ref": "#/$defs/priority"
+        },
+        "nodeId": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "talisman": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "seal": {
+          "$ref": "#/$defs/componentRef"
+        },
+        "charms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/componentRef"
+          }
+        },
+        "charmSets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/componentRef"
+          }
+        },
+        "setBonuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "uniqueCharmLimit": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "runewordPair": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "generator",
+        "spender",
+        "role"
+      ],
+      "properties": {
+        "generator": {
+          "$ref": "#/$defs/componentRef"
+        },
+        "spender": {
+          "$ref": "#/$defs/componentRef"
+        },
+        "socketItem": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "role": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "fitNotes": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "ratings": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "provenPerformance": {
+          "$ref": "#/$defs/score"
+        },
+        "theoreticalCeiling": {
+          "$ref": "#/$defs/score"
+        },
+        "patchFit": {
+          "$ref": "#/$defs/score"
+        },
+        "gearFeasibility": {
+          "$ref": "#/$defs/score"
+        },
+        "reproducibility": {
+          "$ref": "#/$defs/score"
+        },
+        "survivability": {
+          "$ref": "#/$defs/score"
+        },
+        "originality": {
+          "$ref": "#/$defs/score"
+        },
+        "exploitRisk": {
+          "$ref": "#/$defs/score"
+        },
+        "confidence": {
+          "$ref": "#/$defs/score"
+        },
+        "recommendation": {
+          "$ref": "#/$defs/score"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "evidenceRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "summary",
+        "reliability",
+        "confidence"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "type": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "sourceName": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "sourceUrl": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "reliability": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown"
+          ]
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "observedDate": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "legalityNote": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ruleKey",
+        "severity",
+        "message",
+        "confidence"
+      ],
+      "properties": {
+        "ruleKey": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "message": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/componentRef"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/extensions"
+        }
+      }
+    }
+  }
+}

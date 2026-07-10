@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "/schema/build-guide.schema.json",
   "title": "Diablo IV Build Guide",
-  "description": "Guide+State schema for static Diablo IV build guide JSON used by the compendium planner.",
+  "description": "Planner-state schema for static Diablo IV build JSON used by the compendium planner. Long-form agent prose may be stored externally and referenced by agentGuideRefs.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -16,8 +16,6 @@
     "buildType",
     "status",
     "contentTargets",
-    "mechanics",
-    "guide",
     "skills",
     "gear"
   ],
@@ -65,6 +63,13 @@
     },
     "author": {
       "$ref": "#/$defs/nonEmptyString"
+    },
+    "agentGuideRefs": {
+      "type": "array",
+      "description": "Pointers to external agent-facing research, mechanics, guide prose, or evidence notes that should not be embedded in compact planner JSON.",
+      "items": {
+        "$ref": "#/$defs/agentGuideRef"
+      }
     },
     "mechanics": {
       "$ref": "#/$defs/mechanics"
@@ -244,6 +249,41 @@
           "$ref": "#/$defs/extensions"
         }
       }
+    },
+    "agentGuideRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "path": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "sourceKey": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "url": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "path"
+          ]
+        },
+        {
+          "required": [
+            "sourceKey"
+          ]
+        },
+        {
+          "required": [
+            "url"
+          ]
+        }
+      ]
     },
     "mechanics": {
       "type": "object",
@@ -685,8 +725,7 @@
       "required": [
         "skill",
         "name",
-        "priority",
-        "confidence"
+        "priority"
       ],
       "properties": {
         "skill": {
@@ -727,8 +766,7 @@
       "additionalProperties": false,
       "required": [
         "skill",
-        "targetRank",
-        "reason"
+        "targetRank"
       ],
       "properties": {
         "skill": {

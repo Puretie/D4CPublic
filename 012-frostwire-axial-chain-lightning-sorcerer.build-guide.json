@@ -1,0 +1,827 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "012-frostwire-axial-chain-lightning-sorcerer",
+  "name": "Frostwire Axial Chain Lightning Sorcerer",
+  "class": "Sorcerer",
+  "season": "Season 14 - Death Awakening",
+  "patch": "3.1.0 live research frame",
+  "archetype": "Chain of Cold / Axial Conduit multi-element Frost caster",
+  "buildType": "Research-backed testing prototype - comparison-indeterminate",
+  "status": "testing",
+  "contentTargets": [
+    "Softcore endgame Pit and Tower testing",
+    "Infernal Hordes and Helltide farming",
+    "Torment 12 defensive validation",
+    "Boss A/B with Rustbitten Dirk"
+  ],
+  "agentGuideRefs": [
+    {
+      "label": "Two-pass Jeff iteration and comparison record",
+      "path": "data/jeff_iterations/build_14_frostwire_axial_chain_lightning.md"
+    },
+    {
+      "label": "Retained buildcraft lessons",
+      "path": "data/systems_patterns.md"
+    },
+    {
+      "label": "Open runtime questions",
+      "path": "QUESTIONS.md"
+    },
+    {
+      "label": "Transfiguration and D4Builds data requests",
+      "path": "docs/DATA_REQUESTS.md"
+    }
+  ],
+  "skills": {
+    "loadout": [
+      {
+        "name": "Chain Lightning",
+        "role": "Primary Cold/Frost damage",
+        "priority": "required",
+        "rank": 5,
+        "targetRank": 15,
+        "button": "Primary",
+        "tags": [
+          "Core",
+          "Frost via Chain of Cold",
+          "Cold",
+          "Chill"
+        ]
+      },
+      {
+        "name": "Inferno",
+        "role": "Pyromancy Ultimate, grouping, healing, and Fire trigger",
+        "priority": "required",
+        "rank": 1,
+        "targetRank": 1,
+        "button": "Ultimate",
+        "tags": [
+          "Ultimate",
+          "Pyromancy",
+          "Fire"
+        ]
+      },
+      {
+        "name": "Familiar",
+        "role": "Second Shock slot and cooldown support",
+        "priority": "required",
+        "rank": 1,
+        "targetRank": 5,
+        "button": "Utility 1",
+        "tags": [
+          "Conjuration",
+          "Shock via Fast As Lightning",
+          "Lightning"
+        ]
+      },
+      {
+        "name": "Ice Armor",
+        "role": "Barrier, Armor, Unstoppable, and Mana regeneration",
+        "priority": "required",
+        "rank": 1,
+        "targetRank": 5,
+        "button": "Defensive 1",
+        "tags": [
+          "Defensive",
+          "Frost",
+          "Barrier"
+        ]
+      },
+      {
+        "name": "Teleport",
+        "role": "Shock mobility, Raiment trigger, and Weaken",
+        "priority": "required",
+        "rank": 1,
+        "targetRank": 5,
+        "button": "Mobility",
+        "tags": [
+          "Defensive",
+          "Shock",
+          "Mobility"
+        ]
+      },
+      {
+        "name": "Flame Shield",
+        "role": "Pyromancy emergency Immunity",
+        "priority": "required",
+        "rank": 1,
+        "targetRank": 1,
+        "button": "Defensive 2",
+        "tags": [
+          "Defensive",
+          "Pyromancy",
+          "Immune"
+        ]
+      }
+    ],
+    "specializations": [
+      {
+        "name": "Frost Nova Enchantment",
+        "kind": "skill"
+      },
+      {
+        "name": "Chain Lightning Enchantment",
+        "kind": "skill"
+      }
+    ],
+    "treeSelections": [
+      {
+        "skill": "Chain Lightning",
+        "name": "Chain of Cold",
+        "group": "upgrades_1",
+        "rank": 1,
+        "priority": "required"
+      },
+      {
+        "skill": "Chain Lightning",
+        "name": "Damage Bonus",
+        "group": "passives_1",
+        "rank": 1,
+        "priority": "required"
+      },
+      {
+        "skill": "Chain Lightning",
+        "name": "Ramping Damage",
+        "group": "passives_2",
+        "rank": 1,
+        "priority": "required"
+      },
+      {
+        "skill": "Inferno",
+        "name": "Lifecoil",
+        "group": "upgrades_1",
+        "rank": 1,
+        "priority": "required"
+      },
+      {
+        "skill": "Inferno",
+        "name": "Pull",
+        "group": "passives_1",
+        "rank": 1,
+        "priority": "required"
+      },
+      {
+        "skill": "Inferno",
+        "name": "Direct Damage Bonus",
+        "group": "passives_2",
+        "rank": 1,
+        "priority": "recommended"
+      },
+      {
+        "skill": "Familiar",
+        "name": "Fast As Lightning",
+        "group": "upgrades_1",
+        "rank": 1,
+        "priority": "required"
+      },
+      {
+        "skill": "Familiar",
+        "name": "Bonus Effect",
+        "group": "passives_1",
+        "rank": 1,
+        "priority": "required"
+      },
+      {
+        "skill": "Familiar",
+        "name": "Charge",
+        "group": "passives_2",
+        "rank": 1,
+        "priority": "recommended"
+      },
+      {
+        "skill": "Ice Armor",
+        "name": "Permafrost",
+        "group": "upgrades_1",
+        "rank": 1,
+        "priority": "required"
+      },
+      {
+        "skill": "Ice Armor",
+        "name": "Resource Regeneration",
+        "group": "passives_1",
+        "rank": 1,
+        "priority": "required"
+      },
+      {
+        "skill": "Ice Armor",
+        "name": "Duration Bonus and Barrier",
+        "group": "passives_2",
+        "rank": 1,
+        "priority": "required"
+      },
+      {
+        "skill": "Teleport",
+        "name": "Electrobolt",
+        "group": "upgrades_1",
+        "rank": 1,
+        "priority": "recommended"
+      },
+      {
+        "skill": "Teleport",
+        "name": "Crackling Energy",
+        "group": "passives_1",
+        "rank": 1,
+        "priority": "recommended"
+      },
+      {
+        "skill": "Teleport",
+        "name": "Weaken",
+        "group": "passives_2",
+        "rank": 1,
+        "priority": "required"
+      },
+      {
+        "skill": "Flame Shield",
+        "name": "Firebird",
+        "group": "upgrades_1",
+        "rank": 1,
+        "priority": "optional"
+      },
+      {
+        "skill": "Flame Shield",
+        "name": "Duration Bonus",
+        "group": "passives_1",
+        "rank": 1,
+        "priority": "required"
+      },
+      {
+        "skill": "Flame Shield",
+        "name": "Cooldown Reduction",
+        "group": "passives_2",
+        "rank": 1,
+        "priority": "required"
+      },
+      {
+        "skill": "Frost Nova",
+        "name": "Shatter",
+        "group": "upgrades_1",
+        "rank": 1,
+        "priority": "recommended"
+      },
+      {
+        "skill": "Frost Nova",
+        "name": "Vulnerable",
+        "group": "passives_1",
+        "rank": 1,
+        "priority": "required"
+      },
+      {
+        "skill": "Frost Nova",
+        "name": "Size Bonus",
+        "group": "passives_2",
+        "rank": 1,
+        "priority": "recommended"
+      }
+    ],
+    "rankTargets": [
+      {
+        "skill": "Chain Lightning",
+        "targetRank": 15,
+        "priority": "required"
+      },
+      {
+        "skill": "Familiar",
+        "targetRank": 5,
+        "priority": "recommended"
+      },
+      {
+        "skill": "Ice Armor",
+        "targetRank": 5,
+        "priority": "recommended"
+      }
+    ]
+  },
+  "gear": {
+    "slots": [
+      {
+        "slot": "Helm",
+        "priority": "required",
+        "masterwork": "Mana Regeneration or Cooldown Reduction until sustain and defensive cadence are stable.",
+        "aspect": {
+          "name": "Snowveiled Aspect",
+          "kind": "aspect"
+        },
+        "affixes": [
+          {
+            "name": "Mana Regeneration",
+            "priority": "required",
+            "target": "Top-five priority 1"
+          },
+          {
+            "name": "Cooldown Reduction",
+            "priority": "required",
+            "target": "Top-five priority 2"
+          },
+          {
+            "name": "Resource Cost Reduction",
+            "priority": "required",
+            "target": "Top-five priority 3"
+          },
+          {
+            "name": "Maximum Life",
+            "priority": "recommended",
+            "target": "Top-five priority 4"
+          },
+          {
+            "name": "Barrier Generation",
+            "priority": "recommended",
+            "target": "Top-five priority 5"
+          }
+        ],
+        "tempers": [
+          {
+            "affix": "Armor",
+            "priority": "recommended",
+            "manual": {
+              "name": "Worldly Endurance",
+              "kind": "temper"
+            }
+          }
+        ]
+      },
+      {
+        "slot": "Chest Armor",
+        "priority": "required",
+        "masterwork": "Damage reduction and best build-facing fixed affixes.",
+        "sockets": [
+          "Cir",
+          "Mot"
+        ],
+        "item": {
+          "name": "Raiment of the Infinite",
+          "kind": "unique"
+        }
+      },
+      {
+        "slot": "Gloves",
+        "priority": "required",
+        "masterwork": "Ranks to Chain Lightning, then Attack Speed or Critical Strike Chance.",
+        "aspect": {
+          "name": "Conceited Aspect",
+          "kind": "aspect"
+        },
+        "affixes": [
+          {
+            "name": "Ranks to Chain Lightning",
+            "priority": "required",
+            "target": "Top-five priority 1"
+          },
+          {
+            "name": "Attack Speed",
+            "priority": "required",
+            "target": "Top-five priority 2"
+          },
+          {
+            "name": "Critical Strike Chance",
+            "priority": "required",
+            "target": "Top-five priority 3"
+          },
+          {
+            "name": "Critical Strike Damage",
+            "priority": "recommended",
+            "target": "Top-five priority 4"
+          },
+          {
+            "name": "Frost Damage",
+            "priority": "recommended",
+            "target": "Top-five priority 5"
+          }
+        ],
+        "tempers": [
+          {
+            "affix": "Barrier Generation",
+            "priority": "recommended",
+            "manual": {
+              "name": "Natural Schemes",
+              "kind": "temper"
+            }
+          }
+        ]
+      },
+      {
+        "slot": "Pants",
+        "priority": "required",
+        "masterwork": "Chain Lightning ranks and best fixed unique-power package.",
+        "item": {
+          "name": "Axial Conduit",
+          "kind": "unique"
+        }
+      },
+      {
+        "slot": "Boots",
+        "priority": "required",
+        "masterwork": "Unique power and Movement Speed package.",
+        "item": {
+          "name": "Esu's Heirloom",
+          "kind": "unique"
+        }
+      },
+      {
+        "slot": "Amulet",
+        "priority": "required",
+        "masterwork": "Cooldown Reduction, then Critical Strike Chance or Movement Speed.",
+        "aspect": {
+          "name": "Aspect of Merciless Cold",
+          "kind": "aspect"
+        },
+        "affixes": [
+          {
+            "name": "Cooldown Reduction",
+            "priority": "required",
+            "target": "Top-five priority 1"
+          },
+          {
+            "name": "Critical Strike Chance",
+            "priority": "required",
+            "target": "Top-five priority 2"
+          },
+          {
+            "name": "Critical Strike Damage",
+            "priority": "recommended",
+            "target": "Top-five priority 3"
+          },
+          {
+            "name": "Frost Damage",
+            "priority": "recommended",
+            "target": "Top-five priority 4"
+          },
+          {
+            "name": "Movement Speed",
+            "priority": "recommended",
+            "target": "Top-five priority 5"
+          }
+        ],
+        "tempers": [
+          {
+            "affix": "Movement Speed",
+            "priority": "recommended",
+            "manual": {
+              "name": "Natural Motion",
+              "kind": "temper"
+            }
+          }
+        ]
+      },
+      {
+        "slot": "Ring 1",
+        "priority": "required",
+        "masterwork": "Resource/cost package first.",
+        "item": {
+          "name": "Ring of Starless Skies",
+          "kind": "mythic-unique"
+        }
+      },
+      {
+        "slot": "Ring 2",
+        "priority": "required",
+        "masterwork": "Resource Generation until sustain is stable, then Critical Strike Chance.",
+        "aspect": {
+          "name": "Shivering Aspect",
+          "kind": "aspect"
+        },
+        "affixes": [
+          {
+            "name": "Critical Strike Chance",
+            "priority": "required",
+            "target": "Top-five priority 1"
+          },
+          {
+            "name": "Critical Strike Damage Multiplier",
+            "priority": "required",
+            "target": "Top-five priority 2"
+          },
+          {
+            "name": "Attack Speed",
+            "priority": "required",
+            "target": "Top-five priority 3"
+          },
+          {
+            "name": "Cold Damage Multiplier",
+            "priority": "recommended",
+            "target": "Top-five priority 4"
+          },
+          {
+            "name": "Resource Generation",
+            "priority": "required",
+            "target": "Top-five priority 5"
+          }
+        ],
+        "tempers": [
+          {
+            "affix": "Resource Generation",
+            "priority": "required",
+            "manual": {
+              "name": "Worldly Stability",
+              "kind": "temper"
+            }
+          }
+        ]
+      },
+      {
+        "slot": "Main Hand",
+        "priority": "required",
+        "masterwork": "Weapon Damage, Critical Strike Chance, or multiplier rolls.",
+        "sockets": [
+          "Tam",
+          "Lum"
+        ],
+        "aspect": {
+          "name": "Aspect of Elemental Constellation",
+          "kind": "aspect"
+        },
+        "affixes": [
+          {
+            "name": "Weapon Damage",
+            "priority": "required",
+            "target": "Top-five priority 1"
+          },
+          {
+            "name": "Intelligence",
+            "priority": "required",
+            "target": "Top-five priority 2"
+          },
+          {
+            "name": "Lucky Hit: Up to a 15% Chance to Restore +[6 - 8] Primary Resource",
+            "priority": "required",
+            "target": "Top-five priority 3"
+          },
+          {
+            "name": "Cold Damage Multiplier",
+            "priority": "required",
+            "target": "Top-five priority 4"
+          },
+          {
+            "name": "Critical Strike Damage Multiplier",
+            "priority": "required",
+            "target": "Top-five priority 5"
+          }
+        ],
+        "tempers": [
+          {
+            "affix": "Attack Speed",
+            "priority": "required",
+            "manual": {
+              "name": "Worldly Destruction",
+              "kind": "temper"
+            }
+          }
+        ]
+      },
+      {
+        "slot": "Offhand",
+        "priority": "required",
+        "masterwork": "Cooldown Reduction or Resource Cost Reduction until the cast loop is stable.",
+        "aspect": {
+          "name": "Sunderfrost Aspect",
+          "kind": "aspect"
+        },
+        "affixes": [
+          {
+            "name": "Cooldown Reduction",
+            "priority": "required",
+            "target": "Top-five priority 1"
+          },
+          {
+            "name": "Resource Cost Reduction",
+            "priority": "required",
+            "target": "Top-five priority 2"
+          },
+          {
+            "name": "Lucky Hit: Up to a 15% Chance to Restore +[3 - 4] Primary Resource",
+            "priority": "required",
+            "target": "Top-five priority 3"
+          },
+          {
+            "name": "Critical Strike Chance",
+            "priority": "required",
+            "target": "Top-five priority 4"
+          },
+          {
+            "name": "Cold Damage Multiplier",
+            "priority": "required",
+            "target": "Top-five priority 5"
+          }
+        ],
+        "tempers": [
+          {
+            "affix": "Frost Damage",
+            "priority": "required",
+            "manual": {
+              "name": "Elemental Finesse",
+              "kind": "temper"
+            }
+          }
+        ]
+      }
+    ],
+    "statPriorities": [
+      {
+        "stat": "Ranks to Chain Lightning",
+        "priority": "required",
+        "target": "Rank 15"
+      },
+      {
+        "stat": "Elemental Constellation action-bar state",
+        "priority": "required",
+        "target": "2 Frost / 2 Pyromancy / 2 Shock"
+      },
+      {
+        "stat": "Critical Strike Chance",
+        "priority": "required",
+        "target": "Cap practical crit after Esu and Movement Speed"
+      },
+      {
+        "stat": "Attack Speed",
+        "priority": "required"
+      },
+      {
+        "stat": "Mana sustain",
+        "priority": "required",
+        "target": "No generator downtime in a controlled boss window"
+      },
+      {
+        "stat": "Cooldown Reduction",
+        "priority": "required"
+      },
+      {
+        "stat": "Maximum Life, Armor, Resistances, and Barrier Generation",
+        "priority": "required"
+      }
+    ]
+  },
+  "paragon": {
+    "boards": [
+      {
+        "name": "Starting Board",
+        "order": 1,
+        "rotation": "default",
+        "glyphLevel": 100,
+        "glyphRadius": 4,
+        "glyph": {
+          "name": "Unleash",
+          "kind": "paragon-glyph"
+        },
+        "selectedNodes": [
+          {
+            "name": "Shortest glyph-socket path",
+            "priority": "required"
+          }
+        ]
+      },
+      {
+        "name": "Icefall",
+        "order": 2,
+        "rotation": "unknown",
+        "glyphLevel": 100,
+        "glyphRadius": 4,
+        "glyph": {
+          "name": "Reinforced",
+          "kind": "paragon-glyph"
+        },
+        "selectedNodes": [
+          {
+            "name": "Icefall",
+            "priority": "required"
+          },
+          {
+            "name": "Barrier and Frost rare-node clusters",
+            "priority": "recommended"
+          }
+        ]
+      },
+      {
+        "name": "Static Surge",
+        "order": 3,
+        "rotation": "unknown",
+        "glyphLevel": 100,
+        "glyphRadius": 4,
+        "glyph": {
+          "name": "Warding",
+          "kind": "paragon-glyph"
+        },
+        "selectedNodes": [
+          {
+            "name": "Static Surge",
+            "priority": "required"
+          },
+          {
+            "name": "Mana and defensive rare-node clusters",
+            "priority": "required"
+          }
+        ]
+      },
+      {
+        "name": "Frigid Fate",
+        "order": 4,
+        "rotation": "unknown",
+        "glyphLevel": 100,
+        "glyphRadius": 4,
+        "glyph": {
+          "name": "Exploit",
+          "kind": "paragon-glyph"
+        },
+        "selectedNodes": [
+          {
+            "name": "Frigid Fate",
+            "priority": "required"
+          },
+          {
+            "name": "Vulnerable and Dexterity clusters",
+            "priority": "recommended"
+          }
+        ]
+      },
+      {
+        "name": "Searing Heat",
+        "order": 5,
+        "rotation": "unknown",
+        "glyphLevel": 100,
+        "glyphRadius": 4,
+        "glyph": {
+          "name": "Destruction",
+          "kind": "paragon-glyph"
+        },
+        "selectedNodes": [
+          {
+            "name": "Searing Heat",
+            "priority": "required"
+          },
+          {
+            "name": "Critical Strike and direct-damage clusters",
+            "priority": "recommended"
+          }
+        ]
+      }
+    ]
+  },
+  "talisman": {
+    "setBonuses": [
+      "2-piece: Frost triggers Blizzard, Pyromancy triggers Meteor, and Shock triggers Ball Lightning on per-element cooldowns.",
+      "3-piece: casts and damage grant 30% All Resistances per element for 12 seconds.",
+      "5-piece: unleash all Mastery Skills and gain 100% increased damage with a different element for 12 seconds, stacking twice."
+    ],
+    "uniqueCharmLimit": 1,
+    "seal": {
+      "name": "Legendary Horadric Seal with +1 Charm Slot",
+      "kind": "talisman-seal"
+    },
+    "charms": [
+      {
+        "name": "Berú of the Threefold",
+        "kind": "talisman-charm"
+      },
+      {
+        "name": "Fer of the Threefold",
+        "kind": "talisman-charm"
+      },
+      {
+        "name": "Linta of the Threefold",
+        "kind": "talisman-charm"
+      },
+      {
+        "name": "Mlor of the Threefold",
+        "kind": "talisman-charm"
+      },
+      {
+        "name": "Phoba of the Threefold",
+        "kind": "talisman-charm"
+      },
+      {
+        "name": "Soulbrand",
+        "kind": "talisman-charm"
+      }
+    ],
+    "charmSets": [
+      {
+        "name": "Tal Rasha's Threefold Way",
+        "kind": "talisman-set"
+      }
+    ]
+  },
+  "runewords": [
+    {
+      "socketItem": "Main Hand",
+      "role": "Direct-cast Mana restoration",
+      "generator": {
+        "name": "Tam",
+        "kind": "rune"
+      },
+      "spender": {
+        "name": "Lum",
+        "kind": "rune"
+      }
+    },
+    {
+      "socketItem": "Chest Armor",
+      "role": "Repeated-cast damage reduction",
+      "generator": {
+        "name": "Cir",
+        "kind": "rune"
+      },
+      "spender": {
+        "name": "Mot",
+        "kind": "rune"
+      }
+    }
+  ]
+}

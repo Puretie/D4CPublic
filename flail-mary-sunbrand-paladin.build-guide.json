@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.3.0",
   "id": "flail-mary-sunbrand-paladin",
   "name": "Flail Mary Sunbrand Paladin",
   "class": "Paladin",
@@ -14,7 +14,7 @@
     "Bossing",
     "Meme Prototype"
   ],
-  "updated": "2026-07-08",
+  "updated": "2026-07-12",
   "author": "Jeff / Codex",
   "mechanics": {
     "coreLoop": "Equip the Sunbrand Unique Flail, apply Judgement with Holy Bolt and Holy Light Aura, detonate Judgement with Blessed Hammer to feed cooldown support, then cast Heaven's Fury as a flail-powered orbiting light sprinkler.",
@@ -416,7 +416,7 @@
         "title": "Scale Judgement Day and aura uptime",
         "goals": [
           "Prioritize Sentencing, Relentless, Beacon, and Endure boards.",
-          "Add Heaven's Radiant Fire charms if talisman slots permit.",
+          "Complete the five-piece Heaven's Radiant Fire package on Horadric Seal of Honor.",
           "Keep a mercenary or ally inside aura range for Beacon."
         ],
         "actions": [
@@ -1378,30 +1378,68 @@
     "seal": {
       "name": "Horadric Seal of Honor",
       "kind": "talisman-seal",
-      "confidence": "confirmed-public",
-      "notes": "Generic local seal option with armor and Unique Charm capacity; replace with a stronger Judicator-specific seal if local data adds one."
+      "sourceKey": "v_talisman_seals",
+      "confidence": "confirmed-public"
     },
+    "charms": [
+      {
+        "name": "Phoba of Radiant Fire",
+        "kind": "talisman-charm",
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
+      },
+      {
+        "name": "Fer of Radiant Fire",
+        "kind": "talisman-charm",
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
+      },
+      {
+        "name": "Mlor of Radiant Fire",
+        "kind": "talisman-charm",
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
+      },
+      {
+        "name": "Linta of Radiant Fire",
+        "kind": "talisman-charm",
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
+      },
+      {
+        "name": "Berú of Radiant Fire",
+        "kind": "talisman-charm",
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
+      }
+    ],
     "charmSets": [
       {
         "name": "Heaven's Radiant Fire",
         "kind": "talisman-set",
-        "confidence": "confirmed-public",
-        "notes": "Preferred Paladin set because it spreads Judgement and scales Judgement Day."
-      },
-      {
-        "name": "Survival",
-        "kind": "talisman-set",
-        "confidence": "confirmed-public",
-        "notes": "Fallback defensive set if Radiant Fire pieces are missing."
+        "sourceKey": "v_talisman_charm_sets",
+        "confidence": "confirmed-public"
       }
     ],
     "setBonuses": [
-      "Heaven's Radiant Fire 2-piece: Judgement spreading and Judgement Day damage ramp.",
-      "Heaven's Radiant Fire 3-piece: Damage reduction and healing while Judgement Day is active.",
-      "Heaven's Radiant Fire 5-piece: Higher Judgement Day stack ceiling."
+      {
+        "setName": "Heaven's Radiant Fire",
+        "requiredCount": 2,
+        "text": "(2) Judgement now spreads to targets that don't have it and Judging enemies grants Judgement Day, increasing your damage by 12.5% for 10 seconds, up to 5 times."
+      },
+      {
+        "setName": "Heaven's Radiant Fire",
+        "requiredCount": 3,
+        "text": "(3) You gain 25% Damage Reduction and Heal for 2.5% of your Maximum Life every second while affected by Judgement Day."
+      },
+      {
+        "setName": "Heaven's Radiant Fire",
+        "requiredCount": 5,
+        "text": "(5) Increases Judgement Day's maximum number of stacks to 40."
+      }
     ],
     "uniqueCharmLimit": 2,
-    "notes": "Talisman exact charm rolls are not mandatory for the core build. Prioritize Judgement, cooldown, armor, all stats, and life families."
+    "notes": "Complete five-piece Heaven's Radiant Fire package on Horadric Seal of Honor."
   },
   "runewords": [
     {

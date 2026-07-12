@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1.0",
+  "schemaVersion": "1.3.0",
   "id": "012-frostwire-axial-chain-lightning-sorcerer",
   "name": "Frostwire Axial Chain Lightning Sorcerer",
   "class": "Sorcerer",
@@ -755,48 +755,71 @@
     ]
   },
   "talisman": {
-    "setBonuses": [
-      "2-piece: Frost triggers Blizzard, Pyromancy triggers Meteor, and Shock triggers Ball Lightning on per-element cooldowns.",
-      "3-piece: casts and damage grant 30% All Resistances per element for 12 seconds.",
-      "5-piece: unleash all Mastery Skills and gain 100% increased damage with a different element for 12 seconds, stacking twice."
-    ],
-    "uniqueCharmLimit": 1,
     "seal": {
-      "name": "Legendary Horadric Seal with +1 Charm Slot",
-      "kind": "talisman-seal"
+      "name": "Seal of the Diamond Mind",
+      "kind": "talisman-seal",
+      "sourceKey": "v_talisman_seals",
+      "confidence": "confirmed-public"
     },
     "charms": [
       {
-        "name": "Berú of the Threefold",
-        "kind": "talisman-charm"
+        "name": "Phoba of the Threefold",
+        "kind": "talisman-charm",
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
       },
       {
         "name": "Fer of the Threefold",
-        "kind": "talisman-charm"
-      },
-      {
-        "name": "Linta of the Threefold",
-        "kind": "talisman-charm"
+        "kind": "talisman-charm",
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
       },
       {
         "name": "Mlor of the Threefold",
-        "kind": "talisman-charm"
+        "kind": "talisman-charm",
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
       },
       {
-        "name": "Phoba of the Threefold",
-        "kind": "talisman-charm"
+        "name": "Linta of the Threefold",
+        "kind": "talisman-charm",
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
       },
       {
         "name": "Soulbrand",
-        "kind": "talisman-charm"
+        "kind": "talisman-charm",
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
       }
     ],
     "charmSets": [
       {
         "name": "Tal Rasha's Threefold Way",
-        "kind": "talisman-set"
+        "kind": "talisman-set",
+        "sourceKey": "v_talisman_charm_sets",
+        "confidence": "confirmed-public"
       }
-    ]
+    ],
+    "setBonuses": [
+      {
+        "setName": "Tal Rasha's Threefold Way",
+        "requiredCount": 2,
+        "text": "(2) Once per Cast, damaging enemies draws on Tal Rasha's power, triggering a Mastery Skill, each element has a 6 second Cooldown: Frost Skills trigger Blizzard Pyromancy Skills trigger Meteor Shock Skills trigger Ball Lightning"
+      },
+      {
+        "setName": "Tal Rasha's Threefold Way",
+        "requiredCount": 3,
+        "text": "(3) Casts and damage grant 30% All Resistances per element for 12 seconds."
+      },
+      {
+        "setName": "Tal Rasha's Threefold Way",
+        "requiredCount": 5,
+        "text": "(5) Tal Rasha's power now unleashes all Mastery Skills and grants a different element 100% increased damage for 12 seconds, stacking up to 2 times."
+      }
+    ],
+    "uniqueCharmLimit": 1,
+    "notes": "Seal of the Diamond Mind reduces set thresholds by one, completing Tal Rasha's Threefold Way with four matching pieces while reserving the fifth slot for Soulbrand."
   },
   "runewords": [
     {

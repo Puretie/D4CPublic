@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.3.0",
   "id": "demo-paladin-judgement-lantern",
   "name": "Demo Judgement Lantern Paladin",
   "class": "Paladin",
@@ -8,12 +8,22 @@
   "archetype": "Judicator / Persistent Beam Demo",
   "buildType": "Schema Demonstration Blueprint",
   "status": "blueprint",
-  "contentTargets": ["Tower", "Pit", "Bossing", "Schema Demo"],
-  "updated": "2026-07-08",
+  "contentTargets": [
+    "Tower",
+    "Pit",
+    "Bossing",
+    "Schema Demo"
+  ],
+  "updated": "2026-07-12",
   "author": "Compendium Demo",
   "mechanics": {
     "coreLoop": "Apply Judgement, maintain a persistent beam window, and use a high-event Paladin spender to detonate the marked target while defenses stay active.",
-    "engineTags": ["judgement", "persistent field", "cooldown loop", "defensive conversion"],
+    "engineTags": [
+      "judgement",
+      "persistent field",
+      "cooldown loop",
+      "defensive conversion"
+    ],
     "coreInteractions": [
       {
         "name": "Judgement detonation window",
@@ -136,7 +146,10 @@
       {
         "name": "Safer Fortify Variant",
         "summary": "Moves optional offensive affixes into defensive sustain until the loop is stable.",
-        "tradeoffs": ["Lower burst", "Easier early testing"],
+        "tradeoffs": [
+          "Lower burst",
+          "Easier early testing"
+        ],
         "refs": [
           {
             "name": "Maximum Life",
@@ -148,7 +161,10 @@
       {
         "name": "Beam Uptime Variant",
         "summary": "Chases cooldown and resource support at the cost of raw damage affixes.",
-        "tradeoffs": ["More consistent windows", "Higher gearing pressure"]
+        "tradeoffs": [
+          "More consistent windows",
+          "Higher gearing pressure"
+        ]
       }
     ],
     "steps": [
@@ -213,7 +229,11 @@
         "rank": 1,
         "targetRank": 1,
         "button": "1",
-        "tags": ["Basic", "Zealot", "Mobility"],
+        "tags": [
+          "Basic",
+          "Zealot",
+          "Mobility"
+        ],
         "notes": "Demo mobility and setup skill."
       },
       {
@@ -223,7 +243,11 @@
         "rank": 5,
         "targetRank": 15,
         "button": "2",
-        "tags": ["Core", "Zealot", "Physical"]
+        "tags": [
+          "Core",
+          "Zealot",
+          "Physical"
+        ]
       },
       {
         "name": "Heaven's Fury",
@@ -232,7 +256,10 @@
         "rank": 1,
         "targetRank": 5,
         "button": "3",
-        "tags": ["Cooldown", "Holy"]
+        "tags": [
+          "Cooldown",
+          "Holy"
+        ]
       },
       {
         "name": "Defiance Aura",
@@ -240,7 +267,9 @@
         "priority": "required",
         "rank": 1,
         "button": "4",
-        "tags": ["Aura"]
+        "tags": [
+          "Aura"
+        ]
       },
       {
         "name": "Judgement",
@@ -248,7 +277,9 @@
         "priority": "required",
         "rank": 1,
         "button": "5",
-        "tags": ["Judicator"]
+        "tags": [
+          "Judicator"
+        ]
       },
       {
         "name": "Zenith",
@@ -256,7 +287,10 @@
         "priority": "optional",
         "rank": 1,
         "button": "6",
-        "tags": ["Ultimate", "Zealot"]
+        "tags": [
+          "Ultimate",
+          "Zealot"
+        ]
       }
     ],
     "specializations": [
@@ -378,7 +412,9 @@
             "priority": "optional"
           }
         ],
-        "sockets": ["Royal Diamond"]
+        "sockets": [
+          "Royal Diamond"
+        ]
       },
       {
         "slot": "Ring 1",
@@ -491,31 +527,68 @@
     "seal": {
       "name": "Horadric Seal of Honor",
       "kind": "talisman-seal",
+      "sourceKey": "v_talisman_seals",
       "confidence": "confirmed-public"
     },
     "charms": [
       {
-        "name": "Cathan's Righteous Will Demo Charm",
+        "name": "Phoba of Light's Epiphany",
         "kind": "talisman-charm",
-        "confidence": "unknown"
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
       },
       {
-        "name": "Open Utility Charm",
+        "name": "Fer of Light's Epiphany",
         "kind": "talisman-charm",
-        "confidence": "unknown"
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
+      },
+      {
+        "name": "Mlor of Light's Epiphany",
+        "kind": "talisman-charm",
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
+      },
+      {
+        "name": "Linta of Light's Epiphany",
+        "kind": "talisman-charm",
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
+      },
+      {
+        "name": "Berú of Light's Epiphany",
+        "kind": "talisman-charm",
+        "sourceKey": "v_talisman_charms",
+        "confidence": "confirmed-public"
       }
     ],
     "charmSets": [
       {
         "name": "Light's Epiphany",
         "kind": "talisman-set",
+        "sourceKey": "v_talisman_charm_sets",
         "confidence": "confirmed-public"
       }
     ],
-    "setBonuses": ["2-piece demo bonus", "5-piece demo bonus"],
+    "setBonuses": [
+      {
+        "setName": "Light's Epiphany",
+        "requiredCount": 2,
+        "text": "(2) Disciple Skills reduce the Cooldown of Arbiter of Justice by 0.1 seconds when they deal damage, or by 0.5 seconds if they have a Cooldown."
+      },
+      {
+        "setName": "Light's Epiphany",
+        "requiredCount": 3,
+        "text": "(3) While in Arbiter, gain 30% increased Maximum Life and 10% increased Movement Speed"
+      },
+      {
+        "setName": "Light's Epiphany",
+        "requiredCount": 5,
+        "text": "(5) When you Cast Arbiter of Justice, unleash all Ultimates, triggering Heaven's Fury and Fortress and replacing Arbiter of Justice with Zenith for 10 seconds. Gain 500% increased damage with Disciple Skills for the duration of Arbiter of Justice. All Ultimates are also Disciple Skills."
+      }
+    ],
     "uniqueCharmLimit": 2,
-    "notes": "Talisman objects are optional but build-critical for Season 14 planning.",
-    "extensions": {}
+    "notes": "Complete five-piece Light's Epiphany package on Horadric Seal of Honor."
   },
   "runewords": [
     {

@@ -1063,6 +1063,7 @@
       "properties": {
         "boards": {
           "type": "array",
+          "maxItems": 5,
           "items": {
             "$ref": "#/$defs/paragonBoard"
           }

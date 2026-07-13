@@ -86,6 +86,9 @@
     "paragon": {
       "$ref": "#/$defs/paragon"
     },
+    "progression": {
+      "$ref": "#/$defs/progression"
+    },
     "talisman": {
       "$ref": "#/$defs/legacyTalisman"
     },
@@ -138,6 +141,23 @@
             "$ref": "#/$defs/talisman"
           }
         }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "schemaVersion"
+        ],
+        "properties": {
+          "schemaVersion": {
+            "pattern": "^1\\.(?:[4-9]|[1-9]\\d+)\\.\\d+$"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "progression"
+        ]
       }
     }
   ],
@@ -1073,6 +1093,128 @@
         },
         "extensions": {
           "$ref": "#/$defs/extensions"
+        }
+      }
+    },
+    "requiredItemException": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slot",
+        "item",
+        "reason"
+      ],
+      "properties": {
+        "slot": {
+          "$ref": "#/$defs/slotName"
+        },
+        "item": {
+          "$ref": "#/$defs/componentRef"
+        },
+        "reason": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "earlyProgressionStage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "summary",
+        "paragonLevel",
+        "paragonPointBudget",
+        "gear",
+        "paragon",
+        "requiredItemExceptions"
+      ],
+      "properties": {
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "paragonLevel": {
+          "const": 100
+        },
+        "paragonPointBudget": {
+          "const": 100
+        },
+        "gear": {
+          "$ref": "#/$defs/gear"
+        },
+        "paragon": {
+          "$ref": "#/$defs/paragon"
+        },
+        "requiredItemExceptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/requiredItemException"
+          }
+        }
+      }
+    },
+    "midProgressionStage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "summary",
+        "paragonLevel",
+        "paragonPointBudget",
+        "gear",
+        "paragon",
+        "requiredItemExceptions"
+      ],
+      "properties": {
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "paragonLevel": {
+          "const": 200
+        },
+        "paragonPointBudget": {
+          "const": 200
+        },
+        "gear": {
+          "$ref": "#/$defs/gear"
+        },
+        "paragon": {
+          "$ref": "#/$defs/paragon"
+        },
+        "requiredItemExceptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/requiredItemException"
+          }
+        }
+      }
+    },
+    "endgameProgressionStage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "summary"
+      ],
+      "properties": {
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "progression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "early",
+        "mid",
+        "endgame"
+      ],
+      "properties": {
+        "early": {
+          "$ref": "#/$defs/earlyProgressionStage"
+        },
+        "mid": {
+          "$ref": "#/$defs/midProgressionStage"
+        },
+        "endgame": {
+          "$ref": "#/$defs/endgameProgressionStage"
         }
       }
     },

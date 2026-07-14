@@ -688,6 +688,13 @@
             "$ref": "#/$defs/skillLoadoutItem"
           }
         },
+        "invokedSkills": {
+          "type": "array",
+          "description": "Allocated skills that are not on the six-slot action bar and are cast only by another effect such as a Rune.",
+          "items": {
+            "$ref": "#/$defs/skillLoadoutItem"
+          }
+        },
         "specializations": {
           "type": "array",
           "items": {
@@ -946,6 +953,9 @@
           "$ref": "#/$defs/componentRef"
         },
         "aspect": {
+          "$ref": "#/$defs/componentRef"
+        },
+        "transfiguredAspect": {
           "$ref": "#/$defs/componentRef"
         },
         "affixes": {
